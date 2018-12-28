@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>银税通-后台-首页</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./lay/css/font.css">
+    <link rel="stylesheet" href="./lay/css/xadmin.css">
+    <link rel="stylesheet" href="./lay/lib/layui/css/layui.css">
+</head>
+<body>
+<!-- 顶部开始 -->
+<div class="container layui-bg-cyan">
+    <div class="logo"><a href="./index.html"><img style="width: auto;height: auto;max-width: 100%;max-height: 100%; margin-top: 7px;" src="images/logo.png" alt=""></a></div>
+    <div class="left_open">
+        <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+    </div>
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <a href="javascript:;"><span id="accountName"></span></a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a onclick="x_admin_show('修改密码','./html/pwd/modify-pwd.html',600,400);">修改密码</a></dd>
+                <dd><a onclick="exitSystem();">退出</a></dd>
+            </dl>
+        </li>
+    </ul>
+
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav layui-bg-cyan"></div>
+<!-- <div class="x-slide_left"></div> -->
+<!-- 左侧菜单结束 -->
+<!-- 右侧主体开始 -->
+<div class="page-content">
+    <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+        <ul class="layui-tab-title">
+            <li>我的桌面</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <iframe id="welcom_html" src='' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-content-bg"></div>
+<!-- 右侧主体结束 -->
+<!-- 中部结束 -->
+<!-- 底部开始 -->
+<div class="footer layui-bg-cyan">
+    <div class="copyright layui-bg-cyan" style="text-align: center;">
+        2017 © AdminEx by <a href="#" style="font-family: Helvetica, Arial, sans-serif;color: #f2f2f2;" target="_blank">银税通</a>
+    </div>
+</div>
+<script type="text/javascript" src="./lay/js/jquery.min.js"></script>
+<script src="./lay/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/interface_li.js"></script>
+<script src="./js/left.js"></script>
+<script src="./js/footer.js"></script>
+<script type="text/javascript" src="./lay/js/xadmin.js"></script>
+</body>
+</html>

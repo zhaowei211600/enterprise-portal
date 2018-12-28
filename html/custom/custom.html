@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../lay/css/font.css">
+    <link rel="stylesheet" href="../../lay/css/xadmin.css">
+    <link rel="stylesheet" href="../../lay/lib/layui/css/layui.css">
+</head>
+
+<body>
+<div class="x-nav">
+    <span class="layui-breadcrumb" lay-separator="/">
+        <a>
+            <cite>首页</cite>
+        </a>
+        <a>
+            <cite>管理</cite>
+        </a>
+        <a>
+          <cite>用户管理</cite>
+        </a>
+    </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+
+<div class="x-body">
+    <div class="layui-row">
+        <form id="query_form" class="layui-form" onsubmit="return false;">
+            <div class="layui-form-item">
+
+                <div class="layui-inline">
+                    <label class="layui-form-mid">手机号:</label>
+                    <div class="layui-input-inline" style="width: 150px;">
+                        <input type="text" name="phone" id="phone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-mid" for="startDate">注册时间</label>
+                    <div class="layui-input-inline" style="">
+                        <input id="startDate" name="startDate" placeholder="注册时间起" autocomplete="off" class="layui-input fsDate" daterange="1" type="text">
+                    </div>
+                    <label class="layui-form-mid" for="endDate"></label>
+                    <div class="layui-input-inline" style="">
+                        <input id="endDate" name="endDate" placeholder="注册时间止" autocomplete="off" class="layui-input fsDate" daterange="1" type="text">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-mid" for="confirmStartDate">认证时间</label>
+                    <div class="layui-input-inline" style="">
+                        <input id="confirmStartDate" name="confirmStartDate" placeholder="认证时间起" autocomplete="off" class="layui-input fsDate" daterange="1" type="text">
+                    </div>
+                    <label class="layui-form-mid" for="endDate"></label>
+                    <div class="layui-input-inline" style="">
+                        <input id="confirmEndDate" name="confirmEndDate" placeholder="认证时间止" autocomplete="off" class="layui-input fsDate" daterange="1" type="text">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-mid">认证状态:</label>
+                    <div class="layui-input-inline" style="width: 150px;">
+                        <select name="status" id="status" lay-verify="required">
+                            <option value="">全部</option>
+                            <option value="0">待审核</option>
+                            <option value="1">审核通过</option>
+                            <option value="2">审核失败</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <button type="button" id="searchBtn" class="layui-btn" onclick="customList()" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <table id="worker" class="layui-table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>手机号</th>
+            <th>注册时间</th>
+            <th>认证时间</th>
+            <th>身份证A面</th>
+            <th>身份证B面</th>
+            <th>认证状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="customList">
+
+        </tbody>
+    </table>
+    <div id="customPageDiv" class="page">
+    </div>
+</div>
+
+<script type="text/javascript" src="../../lay/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lay/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/interface_li.js"></script>
+<script type="text/javascript" src="../../js/footer.js"></script>
+<script type="text/javascript" src="../../lay/js/xadmin.js"></script>
+<script type="text/javascript" src="../../lay/js/pagination.js"></script>
+<script type="text/javascript" src="../../js/custom/custom.js"></script>
+
+<script>
+    $(function(){
+        layui.use('form', function(){
+            var form = layui.form;
+            form.render();
+        });
+    });
+    //日期框加载
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#startDate'
+        });
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#endDate'
+        });
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#confirmStartDate'
+        });
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#confirmEndDate'
+        });
+    });
+</script>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="../../js/html5shiv.js"></script>
+<script src="../../js/respond.min.js"></script>
+<![endif]-->
+</body>
+</html>

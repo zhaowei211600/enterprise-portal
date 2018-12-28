@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的桌面</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="./lay/css/font.css">
+    <link rel="stylesheet" href="./lay/css/xadmin.css">
+</head>
+<body>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">银税通后台欢迎您，<span id="indexUserName"></span>。</blockquote>
+    <fieldset class="layui-elem-field">
+        <legend>待审核工单</legend>
+        <div class="layui-field-box">
+            <table class="layui-table" lay-even style="margin: auto;padding: auto;">
+                <thead>
+                <tr>
+                    <th style="text-align: center">企业进项资料审核</th>
+                    <th style="text-align: center">开发者审核</th>
+                    <th style="text-align: center">机构用户审核</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="site-doc-icon" style="text-align: center;margin: auto;padding: auto;">
+                    <td style="height:150px;line-height: 40px;">
+                        <a href="javascript:void(0)" onclick="direct('企业资质审核')" style="margin: auto;padding: auto;">
+                            <i class="layui-icon layui-icon-vercode" style="font-size: 50px; color: #2F4056;"></i>
+                            <div class="doc-icon-name" id="corpCount"></div>
+                        </a>
+                    </td>
+                    <td style="height:150px;line-height: 40px;">
+                        <a href="javascript:void(0)" onclick="direct('开发者审核')" style="margin: auto;padding: auto;">
+                            <i class="layui-icon layui-icon-friends" style="font-size: 50px; color: #2F4056;"></i>
+                            <div class="doc-icon-name" id="devCount"></div>
+                        </a>
+                    </td>
+                    <td style="height:150px;line-height: 40px;">
+                        <a href="javascript:void(0)" onclick="direct('机构用户审核')" style="margin: auto;padding: auto;">
+                            <i class="layui-icon layui-icon-component" style="font-size: 50px; color: #2F4056;"></i>
+                            <div class="doc-icon-name" id="orgCount"></div>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <blockquote class="layui-elem-quote layui-quote-nm">上次登录时间：<span id="lastLoginTime"></span></blockquote>
+</div>
+<script type="text/javascript" src="./lay/js/jquery.min.js"></script>
+<script src="./lay/lib/layui/layui.js" charset="utf-8"></script>
+<script src="./js/footer.js"></script>
+<script type="text/javascript" src="./js/interface_li.js"></script>
+<script src="./js/interface_index.js"></script>
+<script type="text/javascript">
+    function direct(word) {
+        var cnt = 0;
+        parent.$('#nav cite').each(function (index, obj) {
+            if(word == $(obj).text()){
+                $(obj).parent('a')[0].click();
+                cnt++;
+                return;
+            }
+        });
+        if(cnt != parent.$('#nav cite').length){
+            return;
+        }
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            layer.msg('无操作权限!', {
+                icon : 5,
+                time : 2000,
+                skin : 'layui-layer-molv',
+                closeBtn : 0
+            });
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../../lay/css/font.css">
+    <link rel="stylesheet" href="../../lay/css/xadmin.css">
+</head>
+
+<body>
+<div class="x-body">
+    <form class="layui-form" onsubmit="return false;">
+        <div class="layui-form-item">
+            <label for="code" class="layui-form-label">
+                <span class="x-red">*</span>账号
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="code" name="code" required="" lay-verify="code"
+                       autocomplete="off" class="layui-input">
+                <input type="hidden" name="id" id="id"/>
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>必填项
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+                <span class="x-red">*</span>姓名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="name" autocomplete="new-name" name="name" required="" lay-verify="name" class="layui-input">
+
+                <input type="text" autocomplete="off" style="position:absolute; top: -999px;"/>
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>必填项
+            </div>
+        </div>
+        <div id="pwdDiv" style="display: none;" class="layui-form-item">
+            <label for="password" class="layui-form-label">
+                <span class="x-red">*</span>密码
+            </label>
+            <div class="layui-input-inline">
+                <input type="password" id="password" name="password" required="" lay-verify="password" class="layui-input">
+                <input type="password" style="display: none;"/>
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                6到16个字符
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="phone" class="layui-form-label">
+                <span class="x-red">*</span>手机号
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="phone" name="phone" required="" lay-verify="phone"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="roleId" class="layui-form-label">
+                <span class="x-red">*</span>角色
+            </label>
+            <div class="layui-input-inline">
+                <select id="roleId" name="roleId" lay-verify="required">
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="submitBtn" class="layui-form-label">
+            </label>
+            <button id="submitBtn" type="button" class="layui-btn" lay-filter="operation" lay-submit="">
+                增加
+            </button>
+            <button class="layui-btn layui-btn-primary" onclick="x_admin_close();" type="button">
+                取消
+            </button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="../../lay/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lay/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/interface_li.js"></script>
+<script src="../../js/footer.js"></script>
+<script src="../../js/permission/user.js"></script>
+<script type="text/javascript" src="../../lay/js/xadmin.js"></script>
+<script type="text/javascript" src="../../lay/js/pagination.js"></script>
+<script src="../../js/permission/user/user-edit.js"></script>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="../../js/html5shiv.js"></script>
+<script src="../../js/respond.min.js"></script>
+<![endif]-->
+</body>
+</html>

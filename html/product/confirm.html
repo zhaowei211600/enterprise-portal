@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>项目验收</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../lay/css/font.css">
+    <link rel="stylesheet" href="../../lay/css/xadmin.css">
+    <link rel="stylesheet" href="../../lay/lib/layui/css/layui.css">
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb" lay-separator="/">
+        <a>
+            <cite>首页</cite>
+        </a>
+        <a>
+            <cite>项目管理</cite>
+        </a>
+        <a>
+          <cite>项目验收</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-mid" for="productName">项目名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="productName" id="productName" placeholder="请输入项目名称" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-mid" for="status">验收状态</label>
+                    <div class="layui-input-inline">
+                        <select name="status" id="status" lay-verify="required">
+                            <option value="" selected="selected">全部</option>
+                            <option value="3">待验收</option>
+                            <option value="4">已验收</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-mid" for="startDate">交付时间</label>
+                    <div class="layui-input-inline" style="">
+                        <input id="startDate" name="startDate" placeholder="发布时间起" autocomplete="off" class="layui-input fsDate" daterange="1" type="text">
+                    </div>
+                    <label class="layui-form-mid" for="endDate"></label>
+                    <div class="layui-input-inline" style="">
+                        <input id="endDate" name="endDate" placeholder="发布时间止" autocomplete="off" class="layui-input fsDate" daterange="1" type="text">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <button type="button" id="searchBtn" class="layui-btn" onclick="productConfirmList()" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <xblock>
+        <button class="layui-btn" onclick="x_admin_show('添加项目','./product-edit.html?type=0',800,600)"><i class="layui-icon"></i>添加</button>
+        <span id="totalNum" class="x-right" style="line-height:40px"></span>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>项目名称</th>
+            <th>项目预算</th>
+            <th>项目工期</th>
+            <th>期望交付时间</th>
+            <th>实际交付时间</th>
+            <th>验收状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="customList">
+        </tbody>
+    </table>
+    <div id="customPageDiv" class="page">
+    </div>
+</div>
+<script type="text/javascript" src="../../lay/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lay/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/interface_li.js"></script>
+<script type="text/javascript" src="../../js/footer.js"></script>
+<script type="text/javascript" src="../../lay/js/xadmin.js"></script>
+<script type="text/javascript" src="../../lay/js/pagination.js"></script>
+<script type="text/javascript" src="../../js/product/confirm.js"></script>
+<script>
+    $(function(){
+        layui.use('form', function(){
+            var form = layui.form;
+            form.render();
+        });
+    });
+    //日期框加载
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#startDate'
+        });
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#endDate'
+        });
+    });
+</script>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="../../js/html5shiv.js"></script>
+<script src="../../js/respond.min.js"></script>
+
+<![endif]-->
+</body>
+</html>

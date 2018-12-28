@@ -1,0 +1,14 @@
+.layui-table-cell span {
+    line-height: 60px;
+}
+.layui-table-cell span i {
+    font-family: "STHeiti","Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+    font-size: 20px;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: bold;
+    font-stretch: normal;
+}
