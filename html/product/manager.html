@@ -36,34 +36,35 @@
                     <div class="layui-input-inline">
                         <input type="text" name="productName" id="productName" placeholder="请输入项目名称" autocomplete="off" class="layui-input">
                     </div>
-                    <label class="layui-form-mid" for="publishStatus">发布状态</label>
-                    <div class="layui-input-inline" >
-                        <select name="publishStatus" id="publishStatus" lay-verify="required">
+                    <label class="layui-form-mid" for="status">项目状态</label>
+                    <div class="layui-input-inline">
+                        <select name="status" id="status" lay-verify="required">
                             <option value="" selected="selected">全部</option>
-                            <option value="0">未发布</option>
-                            <option value="1">已发布</option>
-                            <option value="2">已撤销</option>
+                            <option value="1">待接单</option>
+                            <option value="2">进行中</option>
+                            <option value="3">待验收</option>
+                            <option value="4">已验收</option>
                         </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <button type="button" id="searchBtn" class="layui-btn" onclick="productList(null)" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    <xblock>
-        <button class="layui-btn" onclick="x_admin_show('添加项目','./product-edit.html?type=0',800,600)"><i class="layui-icon"></i>添加</button>
-        <span id="totalNum" class="x-right" style="line-height:40px"></span>
-    </xblock>
     <table class="layui-table">
         <thead>
         <tr>
             <th>序号</th>
             <th>项目名称</th>
-            <th>项目预算</th>
-            <th>项目工期</th>
-            <th>期望交付时间</th>
-            <th>项目状态</th>
-            <th>发布状态</th>
-            <th>操作</th>
+            <th>项目描述</th>
+            <th>设置接单人</th>
+            <th>设置项目状态</th>
         </tr>
         </thead>
         <tbody id="productList">
@@ -78,28 +79,7 @@
 <script type="text/javascript" src="../../js/footer.js"></script>
 <script type="text/javascript" src="../../lay/js/xadmin.js"></script>
 <script type="text/javascript" src="../../lay/js/pagination.js"></script>
-<script type="text/javascript" src="../../js/product/publish.js"></script>
-<script>
-    $(function(){
-        layui.use('form', function(){
-            var form = layui.form;
-            form.render();
-        });
-    });
-    //日期框加载
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        laydate.render({
-            elem: '#startDate'
-        });
-    });
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        laydate.render({
-            elem: '#endDate'
-        });
-    });
-</script>
+<script type="text/javascript" src="../../js/product/manager.js"></script>
 <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 <!--[if lt IE 9]>
 <script src="../../js/html5shiv.js"></script>

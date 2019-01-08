@@ -66,10 +66,10 @@ function customList(cur_page) {
                         tbody += "<td>" + content.registerTime + "</td>";
                         tbody += "<td>" + passTime + "</td>";
                         tbody += "<td>" ;
-                        tbody += "<a title=\"证件照\" onclick=\"confirmUser("+content.id+")\" href=\"javascript:;\">证件照A面</a>" ;
+                        tbody += "<a title=\"证件照\" id=\"cardImgFront\" onclick=\"showImg('"+content.cardImgFront+"',this)\" href=\"javascript:;\">证件照A面</a>" ;
                         tbody += "</td>";
                         tbody += "<td>" ;
-                        tbody += "<a title=\"证件照\" onclick=\"confirmUser("+content.id+")\" href=\"javascript:;\">证件照B面</a>" ;
+                        tbody += "<a title=\"证件照\" onclick=\"showImg('"+content.cardImgBack+"',this)\" href=\"javascript:;\">证件照B面</a>" ;
                         tbody += "</td>";
                         tbody += "<td>" + status + "</td>";
                         tbody += "<td class=\"td-manage\">" ;
@@ -146,4 +146,38 @@ function stopUser(id) {
             }
         });
     });
+}
+
+
+function showImg(fileName,obj) {
+    $.ajax({
+        type: "post",
+        url: baseUrl + '/user/file/download ',
+        data: {'fileName': fileName},
+        contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+        async: true,
+        crossDomain: true == !(document.all),
+        success: function (data) {
+            if (data.returnCode == 200) {
+                var imgContent = 'data:image/png;base64,' + data.data
+                $('#obj').attr('src', imgContent)
+                var imgHtml = "<img src='" + imgContent + "' />";
+                //捕获页
+                layer.open({
+                    type: 1,
+                    shade: false,
+                    title: false, //不显示标题
+                    //area:['600px','500px'],
+                    area: [400 + 'px', 300 + 'px'],
+                    content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    cancel: function () {
+                        //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });
+                    }
+                });
+            }else{
+                layer.msg('文件下载失败',{icon:2,time:1000});
+            }
+        }
+    });
+
 }

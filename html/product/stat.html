@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>项目统计</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../lay/css/font.css">
+    <link rel="stylesheet" href="../../lay/css/xadmin.css">
+    <link rel="stylesheet" href="../../lay/lib/layui/css/layui.css">
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb" lay-separator="/">
+        <a>
+            <cite>首页</cite>
+        </a>
+        <a>
+            <cite>统计</cite>
+        </a>
+        <a>
+          <cite>项目统计</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <table class="layui-table dashBoardArea" style="border-collapse: separate;border-spacing: 10px 0px;">
+            <tbody>
+            <tr class="site-doc-icon" style="text-align: center;margin: auto;padding: auto;">
+                <td style="height:150px;" class="layui-table-cell">
+                    <fieldset class="layui-elem-field" style="border: none;height: 80%">
+                        <legend class="board_legend" style="text-align: left;margin-left: 0px;font-weight: bold;">
+                            累计项目
+                        </legend>
+                        <div id="totalCount" class="layui-field-box num_view">0
+                        </div>
+                    </fieldset>
+                </td>
+                <td style="height:150px;" class="layui-table-cell">
+                    <fieldset class="layui-elem-field" style="border: none;height: 80%">
+                        <legend class="board_legend" style="text-align: left;margin-left: 0px;font-weight: bold;">
+                            进行中项目
+                        </legend>
+                        <div id="doingCount" class="layui-field-box num_view">0
+                        </div>
+                    </fieldset>
+                </td>
+
+                <td style="height:150px;" class="layui-table-cell">
+                    <fieldset class="layui-elem-field" style="border: none;height: 80%">
+                        <legend class="board_legend" style="text-align: left;margin-left: 0px;font-weight: bold;">
+                            累计结项
+                        </legend>
+                        <div id="finishCount" class="layui-field-box num_view">0
+                        </div>
+                    </fieldset>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <xblock>
+        <div class="layui-inline">
+            <div class="layui-input-inline" style="">
+                <input id="startDate" name="startDate" placeholder="发布时间起" autocomplete="off" class="layui-input fsDate" daterange="1" type="text">
+            </div>
+            <label class="layui-form-mid" for="endDate"></label>
+            <div class="layui-input-inline" style="">
+                <input id="endDate" name="endDate" placeholder="发布时间止" autocomplete="off" class="layui-input fsDate" daterange="1" type="text">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <button type="button" id="searchBtn" class="layui-btn" onclick="statList()" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                </div>
+            </div>
+        </div>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>项目名称</th>
+            <th>项目预算</th>
+            <th>项目工期</th>
+            <th>期望交付时间</th>
+            <th>项目状态</th>
+            <th>签约时间</th>
+            <th>实际交付时间</th>
+        </tr>
+        </thead>
+        <tbody id="statList">
+        </tbody>
+    </table>
+    <div id="statPageDiv" class="page">
+    </div>
+</div>
+<script type="text/javascript" src="../../lay/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lay/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/interface_li.js"></script>
+<script type="text/javascript" src="../../js/footer.js"></script>
+<script type="text/javascript" src="../../lay/js/xadmin.js"></script>
+<script type="text/javascript" src="../../lay/js/pagination.js"></script>
+<script type="text/javascript" src="../../js/product/stat.js"></script>
+<script>
+    $(function(){
+        layui.use('form', function(){
+            var form = layui.form;
+            form.render();
+        });
+    });
+    //日期框加载
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#startDate'
+        });
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#endDate'
+        });
+    });
+</script>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="../../js/html5shiv.js"></script>
+<script src="../../js/respond.min.js"></script>
+
+<![endif]-->
+</body>
+</html>

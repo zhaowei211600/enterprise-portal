@@ -13,44 +13,40 @@
 </head>
 <body>
 <div class="x-body">
-    <blockquote class="layui-elem-quote">银税通后台欢迎您，<span id="indexUserName"></span>。</blockquote>
-    <fieldset class="layui-elem-field">
-        <legend>待审核工单</legend>
+    <blockquote class="layui-elem-quote">一企帮后台欢迎您，<span id="indexUserName"></span>。</blockquote>
         <div class="layui-field-box">
             <table class="layui-table" lay-even style="margin: auto;padding: auto;">
                 <thead>
                 <tr>
-                    <th style="text-align: center">企业进项资料审核</th>
+                    <!--<th style="text-align: center">企业进项资料审核</th>
                     <th style="text-align: center">开发者审核</th>
-                    <th style="text-align: center">机构用户审核</th>
+                    <th style="text-align: center">机构用户审核</th>-->
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="site-doc-icon" style="text-align: center;margin: auto;padding: auto;">
                     <td style="height:150px;line-height: 40px;">
-                        <a href="javascript:void(0)" onclick="direct('企业资质审核')" style="margin: auto;padding: auto;">
-                            <i class="layui-icon layui-icon-vercode" style="font-size: 50px; color: #2F4056;"></i>
-                            <div class="doc-icon-name" id="corpCount"></div>
+                        <a href="javascript:void(0)"  style="margin: auto;padding: auto;">
+                            <i class="layui-icon layui-icon-vercode" style="font-size: 20px; color: #2F4056;">累计项目</i>
+                            <div class="doc-icon-name" id="totalCount"></div>
                         </a>
                     </td>
                     <td style="height:150px;line-height: 40px;">
-                        <a href="javascript:void(0)" onclick="direct('开发者审核')" style="margin: auto;padding: auto;">
-                            <i class="layui-icon layui-icon-friends" style="font-size: 50px; color: #2F4056;"></i>
-                            <div class="doc-icon-name" id="devCount"></div>
+                        <a href="javascript:void(0)"  style="margin: auto;padding: auto;">
+                            <i class="layui-icon layui-icon-friends" style="font-size: 20px; color: #2F4056;">进行中项目</i>
+                            <div class="doc-icon-name" id="doingCount"></div>
                         </a>
                     </td>
                     <td style="height:150px;line-height: 40px;">
-                        <a href="javascript:void(0)" onclick="direct('机构用户审核')" style="margin: auto;padding: auto;">
-                            <i class="layui-icon layui-icon-component" style="font-size: 50px; color: #2F4056;"></i>
-                            <div class="doc-icon-name" id="orgCount"></div>
+                        <a href="javascript:void(0)"  style="margin: auto;padding: auto;">
+                            <i class="layui-icon layui-icon-component" style="font-size: 20px; color: #2F4056;">累计结项</i>
+                            <div class="doc-icon-name" id="finishCount"></div>
                         </a>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-    </fieldset>
-    <blockquote class="layui-elem-quote layui-quote-nm">上次登录时间：<span id="lastLoginTime"></span></blockquote>
 </div>
 <script type="text/javascript" src="./lay/js/jquery.min.js"></script>
 <script src="./lay/lib/layui/layui.js" charset="utf-8"></script>

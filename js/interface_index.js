@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $.ajax({
+    /*$.ajax({
         url: baseUrl +"/user/findUserById",
         type: "post",
         contentType: "application/json;charset=utf-8",
@@ -16,7 +16,7 @@ $(document).ready(function(){
                 }
             }
         },
-    });
+    });*/
 
     /*$.ajax({
         url: baseUrl +"/menu/findMenuListByUserId",
@@ -39,7 +39,7 @@ $(document).ready(function(){
         },
     });*/
 
-    $.ajax({
+    /*$.ajax({
         url: baseUrl +"/operation/corp/count?status=01",
         type: "get",
         contentType: "application/json;charset=utf-8",
@@ -53,9 +53,9 @@ $(document).ready(function(){
                 $('#corpCount').text(content);
             }
         },
-    });
+    });*/
 
-    $.ajax({
+    /*$.ajax({
         url: baseUrl +"/fipOperaApi/operation/register/count?status=0",
         type: "get",
         contentType: "application/json;charset=utf-8",
@@ -85,5 +85,26 @@ $(document).ready(function(){
                 $('#orgCount').text(content);
             }
         },
-    });
+    });*/
+
+        $.ajax({
+            url: baseUrl + "/operation/product/stat",
+            type: "post",
+            crossDomain: true == !(document.all),
+            beforeSend: function (request) {
+                request.setRequestHeader("OperaAuthorization", TOKEN);
+            },
+            success: function (resultData) {
+                if (resultData.returnCode == 200) {
+                    if (resultData.data != null) {
+                        $("#totalCount").html(resultData.data.totalCount);
+                        $("#doingCount").html(resultData.data.doingCount);
+                        $("#finishCount").html(resultData.data.finishCount);
+                    }
+                }
+                return false;
+            },
+            complete: function () {
+            }
+        });
 });
