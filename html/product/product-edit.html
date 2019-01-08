@@ -17,13 +17,13 @@
 
 <body>
 <div class="x-body">
-    <form class="layui-form">
+    <form class="layui-form" onsubmit="return false;">
         <div class="layui-form-item">
             <label for="productName" class="layui-form-label">
                 <span class="x-red">*</span>项目名称:
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="productName" name="productName" lay-verify="productName"
+                <input type="text" id="productName" name="productName" lay-verify="required"
                        autocomplete="off" class="layui-input">
                 <input type="hidden" name="id" id="id"/>
             </div>
@@ -34,7 +34,7 @@
                 <span class="x-red">*</span>项目预算：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="budget" name="budget" lay-verify="budget"
+                <input type="text" id="budget" name="budget" lay-verify="number"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -43,7 +43,7 @@
                 <span class="x-red">*</span>项目工期：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="period" name="period" lay-verify="period"
+                <input type="text" id="period" name="period" lay-verify="number"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -52,19 +52,21 @@
                 <span class="x-red">*</span>期望交付时间：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="expectDeliveryTime" name="expectDeliveryTime" lay-verify="expectDeliveryTime"
+                <input type="text" id="expectDeliveryTime" name="expectDeliveryTime" lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">项目描述:</label>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>项目描述:
+            </label>
             <div class="layui-input-block">
-                <textarea id="desc" name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                <textarea id="desc" name="desc" placeholder="请输入内容" class="layui-textarea" lay-verify="required"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button id="saveProductBtn" type="button" class="layui-btn" lay-submit="" onclick="saveProduct()">
+                <button id="saveProductBtn" type="button" class="layui-btn" lay-submit="" lay-filter="product">
                     上架并发布
                 </button>
                 <button class="layui-btn layui-btn-primary" onclick="x_admin_close();">

@@ -41,9 +41,9 @@ function statList(cur_page) {
                     var tbody = '';
                     for (var i = 0; i < list.length; i++) {
                         var content = list[i];
-                        var status = '--';
+                        var status = '';
                         var contractTime = '--';
-                        var realDeliveryTime = '';
+                        var realDeliveryTime = '--';
                         if(content.status == '1'){
                             status = '待接单';
                         }else if(content.status == '2'){

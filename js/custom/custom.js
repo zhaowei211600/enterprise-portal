@@ -48,7 +48,7 @@ function customList(cur_page) {
                         var status = '';
                         var passTime = '';
                         if(content.status == '0'){
-                            status = '待认证';
+                            status = '待审核';
                         }else if(content.status == '1'){
                             status = '审核通过';
                         }else if(content.status == '2'){
@@ -72,14 +72,22 @@ function customList(cur_page) {
                         tbody += "<a title=\"证件照\" onclick=\"showImg('"+content.cardImgBack+"',this)\" href=\"javascript:;\">证件照B面</a>" ;
                         tbody += "</td>";
                         tbody += "<td>" + status + "</td>";
-                        tbody += "<td class=\"td-manage\">" ;
-                        tbody += "<a title=\"认证通过\" onclick=\"confirmUser("+content.id+")\" href=\"javascript:;\">\n" +
-                            "                    <i class=\"layui-icon\">&#xe672;</i>\n" +
-                            "                </a>" ;
-                        tbody += "<a title=\"停用\" onclick=\"stopUser("+content.id+")\" href=\"javascript:;\">\n" +
-                            "                    <i class=\"layui-icon\">&#x1007;</i>\n" +
-                            "                </a>" ;
-                        tbody += "</td>";
+                        if(content.status == '1'){
+                            tbody += "<td class=\"td-manage\">" ;
+                            tbody += "<a title=\"停用\" onclick=\"stopUser("+content.id+")\" href=\"javascript:;\">\n" +
+                                "                    <i class=\"layui-icon\">&#x1007;</i>\n" +
+                                "                </a>" ;
+                            tbody += "</td>";
+                        }else if(content.status == '0'){
+                            tbody += "<td class=\"td-manage\">" ;
+                            tbody += "<a title=\"认证通过\" onclick=\"confirmUser("+content.id+")\" href=\"javascript:;\">\n" +
+                                "                    <i class=\"layui-icon\">&#xe672;</i>\n" +
+                                "                </a>" ;
+                            tbody += "</td>";
+                        }else{
+                            tbody += "<td class=\"td-manage\">" ;
+                            tbody += "</td>";
+                        }
                         tbody += "</tr>";
                     }
                     $('#customList').html(tbody);
