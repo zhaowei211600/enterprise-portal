@@ -40,21 +40,41 @@ function productList(cur_page) {
                     var tbody = '';
                     for (var i = 0; i < list.length; i++) {
                         var content = list[i];
+                        var status = '';
+                        if(content.status == '1'){
+                            status = '待接单';
+                        }else if(content.status == '2'){
+                            status = '进行中';
+                        }else if(content.status == '3'){
+                            status = '待验收';
+                        }else if(content.status == '4'){
+                            status = '已验收';
+                        }
                         tbody += "<tr>";
                         tbody += "<td>" + (i+1) + "</td>";
                         tbody += "<td>" + content.name + "</td>";
                         tbody += "<td>" + content.desc + "</td>";
+                        tbody += "<td>" + status + "</td>";
                         if(content.status != '1'){
                             tbody += "<td> -- </td>";
                         }else{
                             tbody += "<td class=\"td-manage\">" ;
-                            tbody += "<a title=\"设置\" onclick=\"x_admin_show('项目验收','./choose.html?productId="+content.id+"&type=1',800,600)\" href=\"javascript:;\">\n" +
+                            tbody += "<a title=\"设置\" onclick=\"x_admin_show('设置接单人','./choose.html?productId="+content.id+"&type=1',800,600)\" href=\"javascript:;\">\n" +
                                 "                    <i class=\"layui-icon\">&#xe66f;</i>\n" +
                                 "                </a></td>";
                         }
                         tbody += "<td class=\"td-manage\">" ;
-                        tbody += "<a title=\"项目下架\" onclick=\"revokeProduct("+content.id+")\" href=\"javascript:;\">\n" +
-                            "                    <i class=\"layui-icon\">&#xe640;</i>\n" +
+                       /* tbody += "<a title=\"待启动\" onclick=\"changeStatus("+content.id+","+content.status+",'1')\" href=\"javascript:;\">\n" +
+                            "                    <i class=\"layui-icon\">待启动</i>\n" +
+                            "                </a>";*/
+                        tbody += "<a title=\"进行中\" onclick=\"changeStatus("+content.id+","+content.status+",'2')\" href=\"javascript:;\">\n" +
+                            "                    <i class=\"layui-icon\">进行中</i>\n" +
+                            "                </a>";
+                        tbody += "<a title=\"待验收\" onclick=\"changeStatus("+content.id+","+content.status+",'3')\" href=\"javascript:;\">\n" +
+                            "                    <i class=\"layui-icon\">待验收</i>\n" +
+                            "                </a>";
+                        tbody += "<a title=\"已验收\" onclick=\"changeStatus("+content.id+","+content.status+",'4')\" href=\"javascript:;\">\n" +
+                            "                    <i class=\"layui-icon\">已验收</i>\n" +
                             "                </a></td>";
                         tbody += "</tr>";
                     }
@@ -82,26 +102,69 @@ function initPage(icon, msg) {
     productList(null);
 }
 
-function revokeProduct(id) {
-    layer.confirm('确认要下架该项目吗？', {skin: 'layui-layer-molv'}, function(index){
-        $.ajax({
-            url: baseUrl + "/operation/product/revoke?productId=" + id,
-            type: "post",
-            crossDomain: true == !(document.all),
-            beforeSend: function (request) {
-                request.setRequestHeader("OperaAuthorization", TOKEN);
-            },
-            success: function (resultData) {
-                if (resultData.returnCode == 200) {
-                    layer.msg('项目下架成功!',{icon:1,time:1000});
-                    productList(null);
-                }else if(resultData.returnCode == 10008){
-                    layer.msg('项目当前状态无法下架!',{icon:2,time:1000});
-                    productList(null);
-                }else {
-                    layer.msg(resultData.returnMessage,{icon:2,time:1000});
-                }
+function changeStatus(id, currentStatus, changeStatus) {
+    if(currentStatus == 4){
+        layer.msg('项目已结项，无法修改!',{icon:2,time:1000});
+        return false;
+    }
+    if(changeStatus == '2'){
+        if(currentStatus == '1' || currentStatus == '2'){
+            x_admin_show('设置接单人','./choose.html?productId='+id+'&type=1',800,600);
+            return false;
+        }else{
+            layer.msg('项目当前状态无法重新设置接单人!',{icon:2,time:1000});
+            return false;
+        }
+    }else if(changeStatus == '3'){
+        if(currentStatus == '2'){
+            layer.confirm('确认要提交验收吗？', {skin: 'layui-layer-molv'}, function(index){
+                $.ajax({
+                    url: baseUrl + "/operation/product/apply?productId=" + id,
+                    type: "post",
+                    crossDomain: true == !(document.all),
+                    beforeSend: function (request) {
+                        request.setRequestHeader("OperaAuthorization", TOKEN);
+                    },
+                    success: function (resultData) {
+                        if (resultData.returnCode == 200) {
+                            layer.msg('提交成功，请等待审核!',{icon:1,time:1000});
+                            productList(null);
+                        }else {
+                            layer.msg(resultData.returnMessage,{icon:2,time:1000});
+                        }
+                        return false;
+                    }
+                });
+            });
+        }else {
+            layer.msg('项目当前状态无法提交验收!',{icon:2,time:1000});
+            return false;
+        }
+    }else{
+        if(changeStatus == '4'){
+            if(currentStatus == '3'){
+                var params = {'productId': id,};
+                layer.confirm('确认要结项该项目吗？', {skin: 'layui-layer-molv'}, function(index){
+                    $.ajax({
+                        url: baseUrl + "/operation/product/check",
+                        type: "post",
+                        data: params,
+                        beforeSend: function (request) {
+                            request.setRequestHeader("OperaAuthorization", TOKEN);
+                        },
+                        success: function (resultData) {
+                            if (resultData.returnCode == 200) {
+                                initPage(1, "验收成功！");
+                            } else {
+                                layer.msg(resultData.data, {icon: 5, time:3000});
+                            }
+                        }
+                    });
+                });
+            }else{
+                layer.msg('项目当前状态无法结项!',{icon:2,time:1000});
             }
-        });
-    });
+        }
+    }
+
 }

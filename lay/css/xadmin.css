@@ -552,3 +552,14 @@ table th, table td {
 	border-bottom: 1px solid #ddd;
 }
 
+input[readonly]{
+	background-color: #efefef;
+}
+
+textarea[readonly]{
+	background-color: #efefef;
+}
+
+button[disabled]{
+	background-color: #efefef;
+}

@@ -17,13 +17,13 @@
 
 <body>
 <div class="x-body">
-    <form class="layui-form">
+    <form class="layui-form" onsubmit="return false;">
         <div class="layui-form-item">
             <label for="productId" class="layui-form-label">
                 项目编号:
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="productId" name="productId" lay-verify="productId"
+                <input type="text" id="productId" name="productId" lay-verify="productId" readonly
                        autocomplete="off" class="layui-input">
                 <input type="hidden" name="id" id="id"/>
             </div>
@@ -31,7 +31,7 @@
                 项目签约时间：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="contractTime" name="contractTime" lay-verify="contractTime"
+                <input type="text" id="contractTime" name="contractTime" lay-verify="contractTime" readonly
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -40,14 +40,14 @@
                 项目名称：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="name" name="name" lay-verify="name"
+                <input type="text" id="name" name="name" lay-verify="name" readonly
                        autocomplete="off" class="layui-input">
             </div>
             <label for="contactName" class="layui-form-label">
                 项目签约人：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="contactName" name="contactName" lay-verify="contactName"
+                <input type="text" id="contactName" name="contactName" lay-verify="contactName" readonly
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -56,14 +56,14 @@
                 项目预算：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="budget" name="budget" lay-verify="budget"
+                <input type="text" id="budget" name="budget" lay-verify="budget" readonly
                        autocomplete="off" class="layui-input">
             </div>
             <label for="phone" class="layui-form-label">
                 联系方式：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="phone" name="phone" lay-verify="phone"
+                <input type="text" id="phone" name="phone" lay-verify="phone" readonly
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -72,7 +72,7 @@
                 项目工期：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="period" name="period" lay-verify="period"
+                <input type="text" id="period" name="period" lay-verify="period" readonly
                        autocomplete="off" class="layui-input">
             </div>
             <label for="expectDeliveryTime" class="layui-form-label">
@@ -80,7 +80,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="expectDeliveryTime" name="expectDeliveryTime" lay-verify="expectDeliveryTime"
-                       autocomplete="off" class="layui-input">
+                     readonly  autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -89,13 +89,13 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="realDeliveryTime" name="realDeliveryTime" lay-verify="realDeliveryTime"
-                       autocomplete="off" class="layui-input">
+                     readonly  autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">项目交付描述:</label>
             <div class="layui-input-block">
-                <textarea id="deliveryDesc" name="deliveryDesc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                <textarea id="deliveryDesc" name="deliveryDesc" placeholder="请输入内容" class="layui-textarea" readonly></textarea>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
@@ -103,7 +103,7 @@
                 <span class="x-red">*</span>验收情况描述:
             </label>
             <div class="layui-input-block">
-                <textarea id="checkDesc" name="checkDesc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                <textarea id="checkDesc" name="checkDesc" placeholder="请输入内容" class="layui-textarea" lay-verify="required"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -111,13 +111,13 @@
                 <span class="x-red">*</span>结算费用：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="realCost" name="realCost" lay-verify="realCost"
+                <input type="text" id="realCost" name="realCost" lay-verify="number"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button id="saveProductBtn" type="button" class="layui-btn" lay-submit="" onclick="saveConfirm()">
+                <button id="saveProductBtn" type="button" class="layui-btn" lay-submit="" lay-filter="product">
                     确认验收
                 </button>
                 <button class="layui-btn layui-btn-primary" onclick="x_admin_close();">

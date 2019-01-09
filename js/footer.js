@@ -1,5 +1,5 @@
- //var baseUrl = '/backoperation/';
- var baseUrl = 'http://127.0.0.1:8080';
+//var baseUrl = 'http://127.0.0.1:10001';
+var baseUrl = 'http://39.106.157.230:10001';
 $(document).ready(function () {
     //全局处理异常
     $.ajaxSetup({
