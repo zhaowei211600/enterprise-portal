@@ -46,6 +46,7 @@ function productList(cur_page) {
                         tbody += "<td>" + (i+1) + "</td>";
                         tbody += "<td>" + content.name + "</td>";
                         tbody += "<td>" + content.budget + "</td>";
+                        tbody += "<td>" + content.expectCost + "</td>";
                         tbody += "<td>" + content.period + "</td>";
                         tbody += "<td>" + content.expectDeliveryTime + "</td>";
                         tbody += "<td>" + content.realName + "</td>";

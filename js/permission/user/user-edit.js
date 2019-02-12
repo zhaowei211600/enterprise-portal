@@ -22,7 +22,7 @@ $(function () {
                     return "不正确的联系方式";
                 }
             }
-            , password: [/(.+){8,20}$/, '密码必须为8-20位的字母或数字']
+            , password: [/(.+){6,8}$/, '密码必须为6-8位的字母或数字']
             , roleId: function (value) {
                 if (value.length <= 0) {
                     return '请选择角色';

@@ -38,15 +38,15 @@ $(document).ready(function(){
         errorClass: "error",
         rules: {
             phonenumber: {required: true, maxlength: 16, minlength: 4},
-            userpw: {required: true, maxlength: 16, minlength: 8, isPws:true},
+            userpw: {required: true, maxlength: 8, minlength: 6, isPws:true},
             
         },
         messages: {
             phonenumber: {required: "请输入用户名"},
             userpw: {
                 required: "请输入密码",
-                maxlength: "输入长度不可超过16位.",
-                minlength: "输入长度最少8位."
+                maxlength: "输入长度不可超过8位.",
+                minlength: "输入长度最少6位."
             },
             
         },
@@ -108,15 +108,15 @@ $(document).ready(function(){
         errorClass: "error",
         rules: {
             phonenumber: {required: true, maxlength: 16, minlength: 5},
-            userpw: {required: true, maxlength: 16, minlength: 8, isPws:true},
+            userpw: {required: true, maxlength: 8, minlength: 6, isPws:true},
            queryNum:{required: true}
         },
         messages: {
             phonenumber: {required: "请输入手机号码"},
             userpw: {
-                required: "请输入密码，8~16位数字，字母混合组成",
-                maxlength: "输入长度不可超过16位.",
-                minlength: "输入长度最少8位."
+                required: "请输入密码，6~8位数字，字母混合组成",
+                maxlength: "输入长度不可超过8位.",
+                minlength: "输入长度最少6位."
             },
             queryNum:{ required: "请输入验证码"}
         },

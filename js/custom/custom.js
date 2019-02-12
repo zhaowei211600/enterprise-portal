@@ -77,6 +77,9 @@ function customList(cur_page) {
                             tbody += "<a title=\"停用\" onclick=\"stopUser("+content.id+")\" href=\"javascript:;\">\n" +
                                 "                    <i class=\"layui-icon\">&#x1007;</i>\n" +
                                 "                </a>" ;
+                            tbody += "<a title=\"重置密码\" onclick=\"resetUser("+content.id+")\" href=\"javascript:;\">\n" +
+                                "                    <i class=\"layui-icon\">重置密码</i>\n" +
+                                "                </a>" ;
                             tbody += "</td>";
                         }else if(content.status == '0'){
                             tbody += "<td class=\"td-manage\">" ;
@@ -147,6 +150,27 @@ function stopUser(id) {
             success: function (resultData) {
                 if (resultData.returnCode == 200) {
                     layer.msg('用户认证成功!',{icon:1,time:1000});
+                    customList(null);
+                }else {
+                    layer.msg(resultData.returnMessage,{icon:2,time:1000});
+                }
+            }
+        });
+    });
+}
+
+function resetUser(id) {
+    layer.confirm('确认要重置该用户的密码吗？', {skin: 'layui-layer-molv'}, function(index){
+        $.ajax({
+            url: baseUrl + "/operation/custom/reset?userId=" + id + "&password=a123456",
+            type: "post",
+            crossDomain: true == !(document.all),
+            beforeSend: function (request) {
+                request.setRequestHeader("OperaAuthorization", TOKEN);
+            },
+            success: function (resultData) {
+                if (resultData.returnCode == 200) {
+                    layer.msg('密码重置成功：[a12345]!',{icon:1,time:1000});
                     customList(null);
                 }else {
                     layer.msg(resultData.returnMessage,{icon:2,time:1000});
