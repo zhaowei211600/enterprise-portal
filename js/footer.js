@@ -1,7 +1,7 @@
-//var baseUrl = 'http://127.0.0.1:10001';
+var baseUrl = 'http://127.0.0.1:10001';
 //var baseUrl = 'http://39.106.157.230:10001';
 //var baseUrl = 'http://118.190.146.125:10001';
-var baseUrl = 'http://zhaobangshou.com.cn/backenterprise/';
+//var baseUrl = 'http://zhaobangshou.net.cn/backenterprise/';
 $(document).ready(function () {
     //全局处理异常
     $.ajaxSetup({

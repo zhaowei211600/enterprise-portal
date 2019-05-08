@@ -65,30 +65,24 @@ function customList(cur_page) {
                         tbody += "<td>" + content.phone + "</td>";
                         tbody += "<td>" + content.registerTime + "</td>";
                         tbody += "<td>" + passTime + "</td>";
-                        tbody += "<td>" ;
-                        tbody += "<a title=\"证件照\" id=\"cardImgFront\" onclick=\"showImg('"+content.cardImgFront+"',this)\" href=\"javascript:;\">证件照A面</a>" ;
+                        tbody += "<td class=\"td-manage\">" ;
+                        tbody += "<a id=\"cardImgFront\" onclick=\"showImg('"+content.cardImgFront+"',this)\" href=\"javascript:;\">证件照A面</a>" ;
                         tbody += "</td>";
                         tbody += "<td>" ;
-                        tbody += "<a title=\"证件照\" onclick=\"showImg('"+content.cardImgBack+"',this)\" href=\"javascript:;\">证件照B面</a>" ;
+                        tbody += "<a onclick=\"showImg('"+content.cardImgBack+"',this)\" href=\"javascript:;\">证件照B面</a>" ;
                         tbody += "</td>";
                         tbody += "<td>" + status + "</td>";
                         if(content.status == '1'){
                             tbody += "<td class=\"td-manage\">" ;
-                            tbody += "<a title=\"停用\" onclick=\"stopUser("+content.id+")\" href=\"javascript:;\">\n" +
-                                "                    <i class=\"layui-icon\">&#x1007;</i>\n" +
-                                "                </a>" ;
-                            tbody += "<a title=\"重置密码\" onclick=\"resetUser("+content.id+")\" href=\"javascript:;\">\n" +
-                                "                    <i class=\"layui-icon\">重置密码</i>\n" +
-                                "                </a>" ;
+                            tbody += "<a onclick=\"stopUser("+content.id+")\" href=\"javascript:;\"> 停用 |</a>" ;
+                            tbody += "<a onclick=\"resetUser("+content.id+")\" href=\"javascript:;\"> 重置密码 </a>" ;
                             tbody += "</td>";
                         }else if(content.status == '0'){
                             tbody += "<td class=\"td-manage\">" ;
-                            tbody += "<a title=\"认证通过\" onclick=\"confirmUser("+content.id+")\" href=\"javascript:;\">\n" +
-                                "                    <i class=\"layui-icon\">&#xe672;</i>\n" +
-                                "                </a>" ;
+                            tbody += "<a onclick=\"confirmUser("+content.id+")\" href=\"javascript:;\"> 认证通过 </a>" ;
                             tbody += "</td>";
                         }else{
-                            tbody += "<td class=\"td-manage\">" ;
+                            tbody += "<td>" ;
                             tbody += "</td>";
                         }
                         tbody += "</tr>";
@@ -207,7 +201,7 @@ function showImg(fileName,obj) {
                     }
                 });
             }else{
-                layer.msg('文件下载失败',{icon:2,time:1000});
+                layer.msg('获取失败稍后重新再试',{icon:2,time:1000});
             }
         }
     });

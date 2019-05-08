@@ -11,10 +11,20 @@
     <link rel="stylesheet" href="../../lay/css/xadmin.css">
     <link rel="stylesheet" href="../../lay/lib/layui/css/layui.css">
     <style type="text/css">
-        a {color: #007DDB; text-decoration:none;}
-        a:visited {text-decoration:none;}
-        a:hover {color:#ba2636;text-decoration:underline;}
-        a:active {color:#ba2636;}
+
+
+        .table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .table tr td {
+            text-overflow: ellipsis; /* for IE */
+            -moz-text-overflow: ellipsis; /* for Firefox,mozilla */
+            overflow: hidden;
+            white-space: nowrap;
+            text-align: left
+        }
     </style>
 </head>
 <body>
@@ -31,7 +41,8 @@
         </a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+        <i class="layui-icon" style="line-height:30px">&#xe669;
+        </i></a>
 </div>
 <div class="x-body">
     <div class="layui-row">
@@ -63,15 +74,15 @@
             </div>
         </form>
     </div>
-    <table class="layui-table">
+    <table class="layui-table table">
         <thead>
         <tr>
             <th>序号</th>
             <th>项目名称</th>
             <th>项目描述</th>
             <th>项目状态</th>
-            <th>设置接单人</th>
-            <th>设置项目状态</th>
+            <th>接单人设置</th>
+            <th>项目状态设置</th>
         </tr>
         </thead>
         <tbody id="productList">

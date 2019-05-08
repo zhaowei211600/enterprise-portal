@@ -59,22 +59,22 @@ function productList(cur_page) {
                             tbody += "<td> -- </td>";
                         }else{
                             tbody += "<td class=\"td-manage\">" ;
-                            tbody += "<a title=\"设置\" onclick=\"x_admin_show('设置接单人','./choose.html?productId="+content.id+"&type=1',800,600)\" href=\"javascript:;\">\n" +
-                                "                    <i class=\"layui-icon\">&#xe66f;</i>\n" +
+                            tbody += "<a  onclick=\"x_admin_show('设置接单人','./choose.html?productId="+content.id+"&type=1',800,600)\" href=\"javascript:;\">" +
+                                "                    设置接单人" +
                                 "                </a></td>";
                         }
                         tbody += "<td class=\"td-manage\">" ;
                        /* tbody += "<a title=\"待启动\" onclick=\"changeStatus("+content.id+","+content.status+",'1')\" href=\"javascript:;\">\n" +
                             "                    <i class=\"layui-icon\">待启动</i>\n" +
                             "                </a>";*/
-                        tbody += "<a title=\"进行中\" onclick=\"changeStatus("+content.id+","+content.status+",'2')\" href=\"javascript:;\">\n" +
-                            "                    <i class=\"layui-icon\">进行中</i>\n" +
+                        tbody += "<a  onclick=\"changeStatus("+content.id+","+content.status+",'2')\" href=\"javascript:;\">" +
+                            "                    进行中 |" +
                             "                </a>";
-                        tbody += "<a title=\"待验收\" onclick=\"changeStatus("+content.id+","+content.status+",'3')\" href=\"javascript:;\">\n" +
-                            "                    <i class=\"layui-icon\">待验收</i>\n" +
+                        tbody += "<a  onclick=\"changeStatus("+content.id+","+content.status+",'3')\" href=\"javascript:;\">" +
+                            "                    待验收 |" +
                             "                </a>";
-                        tbody += "<a title=\"已验收\" onclick=\"changeStatus("+content.id+","+content.status+",'4')\" href=\"javascript:;\">\n" +
-                            "                    <i class=\"layui-icon\">已验收</i>\n" +
+                        tbody += "<a  onclick=\"changeStatus("+content.id+","+content.status+",'4')\" href=\"javascript:;\">" +
+                            "                    已验收" +
                             "                </a></td>";
                         tbody += "</tr>";
                     }

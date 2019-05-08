@@ -69,9 +69,15 @@ function productConfirmList(cur_page) {
                         tbody += "<td>" + content.expectDeliveryTime + "</td>";
                         tbody += "<td>" + content.realDeliveryTime + "</td>";
                         tbody += "<td>" + status + "</td>";
-                        tbody += "<td class=\"td-manage\">" +
-                            "<a title=\"验收\"  onclick=\"x_admin_show('项目验收','./product-confirm.html?productId="+content.id+"&type=1',800,600)\" href=\"javascript:;\">\n" +
-                            "<i class=\"layui-icon\">&#xe642;</i></a>";
+                        if(content.status!=='3' ){
+                            tbody += "<td> -- </td>";
+                            //已经验收了的项目要可以看到详情的
+                        }else {
+                            tbody += "<td class=\"td-manage\">" +
+                                "<a  onclck=\"x_admin_show('项目验收','./product-confirm.html?productId="+content.id+"&type=1',800,600)\" href=\"javascript:;\">" +
+                                "项目验收"+"</a></td>"
+                        }
+
                         tbody += "</tr>";
                     }
                     $('#confirmList').html(tbody);

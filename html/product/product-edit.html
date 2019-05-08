@@ -20,48 +20,50 @@
     <form class="layui-form" onsubmit="return false;">
         <div class="layui-form-item">
             <label for="productName" class="layui-form-label">
-                <span class="x-red">*</span>项目名称:
+                <span class="x-red">*</span>项目名称：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="productName" name="productName" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                <input type="text" style="width: 300px" id="productName" name="productName" lay-verify="required" placeholder="填写项目名称" autocomplete="off" class="layui-input">
                 <input type="hidden" name="id" id="id"/>
             </div>
 
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item" >
             <label for="budget" class="layui-form-label">
                 <span class="x-red">*</span>项目预算：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="budget" name="budget" lay-verify="number"
-                       autocomplete="off" class="layui-input">
+                <input type="text" style="width: 300px" id="budget" name="budget" lay-verify="number" placeholder="填写项目预算" autocomplete="off" class="layui-input">
             </div>
+            <label  class="layui-form-label">
+                元
+            </label>
         </div>
         <div class="layui-form-item">
             <label for="period" class="layui-form-label">
                 <span class="x-red">*</span>项目工期：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="period" name="period" lay-verify="number"
-                       autocomplete="off" class="layui-input">
+                <input type="text" style="width: 300px" id="period" name="period" lay-verify="number" placeholder="填写项目工期，如1个月填1即可" autocomplete="off" class="layui-input">
             </div>
+            <label  class="layui-form-label">
+                个月
+            </label>
         </div>
         <div class="layui-form-item">
             <label for="expectDeliveryTime" class="layui-form-label">
-                <span class="x-red">*</span>期望交付时间：
+                <span class="x-red">*</span>交付时间：
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="expectDeliveryTime" name="expectDeliveryTime" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                <input type="text" style="width: 300px" id="expectDeliveryTime" name="expectDeliveryTime" lay-verify="required" placeholder="选择期望交付时间" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">
-                <span class="x-red">*</span>项目描述:
+                <span class="x-red">*</span>项目描述：
             </label>
             <div class="layui-input-block">
-                <textarea id="desc" name="desc" placeholder="请输入内容" class="layui-textarea" lay-verify="required"></textarea>
+                <textarea id="desc" name="desc" placeholder="请输入项目详细描述" class="layui-textarea" lay-verify="required"></textarea>
             </div>
         </div>
         <div class="layui-form-item">

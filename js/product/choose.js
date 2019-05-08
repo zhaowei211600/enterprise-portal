@@ -42,9 +42,7 @@ function userList(cur_page) {
                         tbody += "<td>" + content.phone + "</td>";
                         tbody += "<td>" + content.registerTime + "</td>";
                         tbody += "<td class=\"td-manage\">" ;
-                        tbody += "<a title=\"选择接单人\" onclick=\"chooseUser("+content.id+","+content.userId+")\" href=\"javascript:;\">\n" +
-                            "                    <i class=\"layui-icon\">&#xe672;</i>\n" +
-                            "                </a></td>";
+                        tbody += "<a title=\"确认当前用户为接单人\" onclick=\"chooseUser("+content.id+","+content.userId+")\" href=\"javascript:;\">确认接单</a></td>";
                         tbody += "</tr>";
                     }
                     $('#userList').html(tbody);

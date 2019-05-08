@@ -69,10 +69,7 @@ function productList(cur_page) {
                         tbody += "<td>" + content.expectDeliveryTime + "</td>";
                         tbody += "<td>" + status + "</td>";
                         tbody += "<td>" + publishStatus + "</td>";
-                        tbody += "<td class=\"td-manage\">" ;
-                        tbody += "<a title=\"项目下架\" onclick=\"revokeProduct("+content.id+")\" href=\"javascript:;\">\n" +
-                            "                    <i class=\"layui-icon\">&#xe640;</i>\n" +
-                            "                </a></td>";
+                        tbody += "<td class='td-manage' ><a onclick=\"revokeProduct("+content.id+")\" href=\"javascript:;\"> 下架 </a></td>" ;
                         tbody += "</tr>";
                     }
                     $('#productList').html(tbody);
