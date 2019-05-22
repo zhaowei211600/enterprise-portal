@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>选择接单人</title>
+    <title>项目结算</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="addWhite"
@@ -13,33 +13,38 @@
     <link rel="stylesheet" href="../../lay/css/xadmin.css">
     <link rel="stylesheet" href="../../lay/lib/layui/css/layui.css">
     <link rel="stylesheet" href="../../css/zTree/zTreeStyle.css" type="text/css">
+    <style>
+        .layui-input{
+            display: inline-block;
+            width: 90%;
+        }
+    </style>
 </head>
 
 <body>
 <div class="x-body">
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <div class="layui-input-inline">
-                <button type="button"  class="layui-btn" onclick="chooseUser()" >
-                    <i class="layui-icon">选择接单人</i>
+    <form class="layui-form" onsubmit="return false;">
+
+        <div class="layui-form-item">
+            <label for="amount" class="layui-form-label layui-form-label0">
+                结算金额：
+            </label>
+            <div class="layui-input-block layui-input-block0">
+                <input class="layui-input" placeholder="请输入结算金额" id="amount" name="amount" required lay-verify="required" >  元
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="text-align: right;">
+                <button id="saveProductBtn" type="button" class="layui-btn" lay-submit="" lay-filter="product">
+                    确认
+                </button>
+                <button class="layui-btn layui-btn-primary" onclick="x_admin_close();">
+                    关闭
                 </button>
             </div>
         </div>
-    </div>
-    <table class="layui-table">
-        <thead>
-        <tr>
-            <th style="text-align:center"><input id="ischange" type="checkbox" style='width: 20px;height: 20px;' name="" ></th>
-            <th>姓名</th>
-            <th>联系电话</th>
-            <th>注册时间</th>
-        </tr>
-        </thead>
-        <tbody id="userList">
-        </tbody>
-    </table>
-    <div id="userPageDiv" class="page">
-    </div>
+    </form>
 </div>
 <script type="text/javascript" src="../../lay/js/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/zTree/jquery.ztree.core.min.js"></script>
@@ -47,8 +52,7 @@
 <script type="text/javascript" src="../../js/interface_li.js"></script>
 <script src="../../js/footer.js"></script>
 <script type="text/javascript" src="../../lay/js/xadmin.js"></script>
-<script type="text/javascript" src="../../lay/js/pagination.js"></script>
-<script src="../../js/product/choose.js"></script>
+<script src="../../js/settle/settle-detail-confirm.js"></script>
 
 <script>
     $(function(){

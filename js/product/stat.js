@@ -49,9 +49,7 @@ function statList(cur_page) {
                         }else if(content.status == '2'){
                             status = '进行中';
                         }else if(content.status == '3'){
-                            status = '待验收';
-                        }else if(content.status == '4'){
-                            status = '已验收';
+                            status = '已结束';
                         }
                         if(content.contractTime != 'null' && content.contractTime != null){
                             contractTime = content.contractTime;

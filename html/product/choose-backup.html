@@ -20,6 +20,19 @@
     <div class="layui-form-item">
         <div class="layui-inline">
             <div class="layui-input-inline">
+                <input type="text" name="realName" id="realName" placeholder="添加姓名" autocomplete="off"
+                       class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="phone" id="phone" placeholder="联系电话" autocomplete="off"
+                       class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <button type="button"  class="layui-btn" onclick="addUser()" >
+                    <i class="layui-icon">新增用户</i>
+                </button>
+            </div>
+            <div class="layui-input-inline">
                 <button type="button"  class="layui-btn" onclick="chooseUser()" >
                     <i class="layui-icon">选择接单人</i>
                 </button>
@@ -48,7 +61,7 @@
 <script src="../../js/footer.js"></script>
 <script type="text/javascript" src="../../lay/js/xadmin.js"></script>
 <script type="text/javascript" src="../../lay/js/pagination.js"></script>
-<script src="../../js/product/choose.js"></script>
+<script src="../../js/product/choose-backup.js"></script>
 
 <script>
     $(function(){
