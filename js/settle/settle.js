@@ -24,7 +24,7 @@ function productConfirmList(cur_page) {
     param['productName'] = $('#productName').val();
     param['type'] = $('#type').val();
     param['attr'] = $("#attr").val();
-    param['commitCheck'] = $("#isCheck").val();
+    param['commitCheck'] = '1';
     var loadingIndex = layer.load(1);
     $.ajax({
         data: param,
@@ -80,9 +80,11 @@ function productConfirmList(cur_page) {
                         tbody += "<td>" + attr + "</td>";
                         tbody += "<td>" + status + "</td>";
                         tbody += "<td class=\"td-manage\">" +
-                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./product-confirm-detail.html?productId="+content.id+"&type=1',1000,600)\" href=\"javascript:;\">" +
-                            "项目验收"+"</a></td>"
-
+                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./settle-detail.html?productId="+content.id+"&type=1',1000,600)\" href=\"javascript:;\">" +
+                            "项目详情"+"</a>"
+                        tbody += "|";
+                        tbody += "<a onclick=\"closeProduct("+ content.id +")\" href=\"javascript:;\">" +
+                            "结束"+"</a></td>"
                         tbody += "</tr>";
                     }
                     $('#confirmList').html(tbody);
@@ -107,4 +109,26 @@ function productConfirmList(cur_page) {
 function initPage(icon, msg) {
     layer.msg(msg,{icon:icon,time:2000});
     productConfirmList(null);
+}
+
+function closeProduct(productId) {
+    var loadingIndex = layer.load(1);
+    $.ajax({
+        url: baseUrl + "/operation/product/close?productId="+ productId ,
+        type: "get",
+        crossDomain: true == !(document.all),
+        beforeSend: function (request) {
+            request.setRequestHeader("OperaAuthorization", TOKEN);
+        },
+        success: function (resultData) {
+            if (resultData.returnCode == 200) {
+                productConfirmList(null);
+            }else{
+                layer.msg(resultData.returnMessage);
+            }
+        },
+        complete: function () {
+            layer.close(loadingIndex);
+        }
+    });
 }

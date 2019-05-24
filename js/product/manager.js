@@ -59,7 +59,7 @@ function productList(cur_page) {
                             tbody += "<td> -- </td>";
                         }else{
                             tbody += "<td class=\"td-manage\">" ;
-                            tbody += "<a  onclick=\"x_admin_show('设置接单人','./choose.html?productId="+content.id+"&type=1',800,600)\" href=\"javascript:;\">" +
+                            tbody += "<a  onclick=\"x_admin_show('设置接单人','./choose-backup.html?productId="+content.id+"&attr="+content.attr+"',800,600)\" href=\"javascript:;\">" +
                                 "                    设置接单人" +
                                 "                </a></td>";
                         }
@@ -68,14 +68,8 @@ function productList(cur_page) {
                             "                    <i class=\"layui-icon\">待启动</i>\n" +
                             "                </a>";*/
                         tbody += "<a  onclick=\"changeStatus("+content.id+","+content.status+",'2')\" href=\"javascript:;\">" +
-                            "                    进行中 |" +
+                            "                    进行中 " +
                             "                </a>";
-                        tbody += "<a  onclick=\"changeStatus("+content.id+","+content.status+",'3')\" href=\"javascript:;\">" +
-                            "                    待验收 |" +
-                            "                </a>";
-                        tbody += "<a  onclick=\"changeStatus("+content.id+","+content.status+",'4')\" href=\"javascript:;\">" +
-                            "                    已验收" +
-                            "                </a></td>";
                         tbody += "</tr>";
                     }
                     $('#productList').html(tbody);

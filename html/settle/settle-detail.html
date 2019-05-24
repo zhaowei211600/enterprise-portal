@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>结算详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="addWhite"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../../lay/css/font.css">
+    <link rel="stylesheet" href="../../lay/css/xadmin.css">
+    <link rel="stylesheet" href="../../lay/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/zTree/zTreeStyle.css" type="text/css">
+    <style>
+        .product-confirm-detail-title{
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .layui-input{
+            width: 90%;
+            display: inline-block;
+        }
+        .layui-form-item .layui-input-inline{
+            width: 360px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="x-body">
+    <form class="layui-form" onsubmit="return false;">
+        <div class="product-confirm-detail-title">基本信息</div>
+        <div class="layui-form-item">
+            <label for="productId" style="text-align: left;" class="layui-form-label">
+                项目编号:
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="productId" name="productId" lay-verify="productId" readonly
+                       autocomplete="off" class="layui-input">
+                <input type="hidden" name="id" id="id"/>
+            </div>
+            <label for="name" class="layui-form-label">
+                项目名称：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="name" name="name" lay-verify="name" readonly
+                       autocomplete="off" class="layui-input">
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label for="type" class="layui-form-label">
+                项目类型：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="type" name="type" lay-verify="contractTime" readonly
+                       autocomplete="off" class="layui-input">
+            </div>
+            <label for="attr" class="layui-form-label">
+                项目性质：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="attr" name="attr" lay-verify="contactName" readonly
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="budget" class="layui-form-label">
+                项目预算：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="budget" name="budget" lay-verify="budget" readonly
+                       autocomplete="off" class="layui-input">
+            </div>
+            <label for="period" class="layui-form-label">
+                项目工期：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="period" name="period" lay-verify="period" readonly
+                       autocomplete="off" class="layui-input">
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+
+            <label for="expectDeliveryTime" class="layui-form-label">
+                交付时间：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="expectDeliveryTime" name="expectDeliveryTime" lay-verify="expectDeliveryTime"
+                       readonly  autocomplete="off" class="layui-input">
+            </div>
+            <label for="serviceCost" class="layui-form-label">
+                服务费用：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serviceCost" name="serviceCost" readonly
+                       autocomplete="off" class="layui-input">元
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="costType" class="layui-form-label">
+                结算方式：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="costType" name="costType" lay-verify="realDeliveryTime"
+                       readonly  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+    </form>
+    <hr class="layui-bg-black">
+    <div class="product-confirm-detail-title">项目结算</div>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>联系电话</th>
+            <th>提交验收时间</th>
+            <th>验收人</th>
+            <th>验收时间</th>
+            <th>结算状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="waitCheckList">
+
+        </tbody>
+    </table>
+    <div id="page" style="text-align: right;"></div>
+
+</div>
+<script type="text/javascript" src="../../lay/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/zTree/jquery.ztree.core.min.js"></script>
+<script type="text/javascript" src="../../lay/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/interface_li.js"></script>
+<script src="../../js/footer.js"></script>
+<script type="text/javascript" src="../../lay/js/xadmin.js"></script>
+<script src="../../js/settle/settle-detail.js"></script>
+
+<script>
+    $(function(){
+        layui.use('form', function(){
+            var form = layui.form;
+            form.render();
+        });
+    });
+    //日期框加载
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#expectDeliveryTime'
+        });
+    });
+
+</script>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="../../js/html5shiv.js"></script>
+<script src="../../js/respond.min.js"></script>
+<![endif]-->
+
+</body>
+</html>

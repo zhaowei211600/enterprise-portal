@@ -1,33 +1,33 @@
 var form = null,
     layer = null,
     element = null;
-var productId, status;
+var checkOrderId, status, orderId;
 $(function () {
     layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
         form = layui.form, layer = layui.layer, element = layui.element;
-        initialPage(form);
+        initialPage(form)
 
         form.on('submit(product)', function(data){
-            var id = $("#id").val();
-            var checkDesc = $("#checkDesc").val();
-            var realCost = $("#realCost").val();
-            var params = {'productId': id, 'checkDesc': checkDesc, 'realCost': realCost};
-            if(status == '4'){
-                layer.msg("当前项目已结项", {icon: 5, time:3000});
-            }
+            var id = checkOrderId;
+            var status = $("#status").val();
+            var auditDesc = $("#realCost").val();
+            var params = {'id': id, 'auditDesc': auditDesc, 'status': status};
+
             var loadingIndex = layer.load(1);
             $.ajax({
-                url: baseUrl + "/operation/product/check",
+                url: baseUrl + "/operation/check/audit",
                 type: "post",
-                data: params,
+                data: JSON.stringify(params),
+                contentType: 'application/json;charset=UTF-8',
                 beforeSend: function (request) {
                     request.setRequestHeader("OperaAuthorization", TOKEN);
                 },
                 success: function (resultData) {
                     if (resultData.returnCode == 200) {
                         x_admin_close();
-                        parent.initPage(1, resultData.returnMessage);
+                        parent.getWaitCheckList(checkOrderId, 1);
+                        parent.getCheckHistoryList(checkOrderId, 1);
                     } else {
                         layer.msg(resultData.data, {icon: 5, time:3000});
                     }
@@ -42,9 +42,17 @@ $(function () {
 });
 
 function initialPage(form) {
-    productId = getUrlParam('productId');
-    if(productId != 0) {
-        displayProduct(productId , form);
+    checkOrderId = getUrlParam('id');
+    orderId = getUrlParam('orderId');
+    if(checkOrderId != 0) {
+        getOrderAttachment(orderId , form);
+        var descArr = JSON.parse(localStorage.getItem('finishDesc'))
+        for (var item of descArr){
+            if (item.id == checkOrderId){
+                $('#deliveryDesc').val(item.finishDesc)
+                return;
+            }
+        }
     }else {
         $("#id").val('0');
     }
@@ -53,11 +61,17 @@ function initialPage(form) {
  * 编辑前回显
  * @param id
  */
-function displayProduct(id, form) {
+function getOrderAttachment(id, form) {
     if(!id || '' == id) return;
     var loadingIndex = layer.load(1);
     $.ajax({
-        url: baseUrl + "/operation/product/find?productId=" + id,
+        url: baseUrl + "/operation/attachment/order/list",
+        data:JSON.stringify({
+            "orderId":id,
+            "pageNum":"1",
+            "pageSize":"20"
+        }),
+        contentType: 'application/json;charset=UTF-8',
         type: "post",
         crossDomain: true == !(document.all),
         beforeSend: function (request) {
@@ -65,26 +79,15 @@ function displayProduct(id, form) {
         },
         success: function (resultData) {
             if (resultData.returnCode == 200) {
-                var product = resultData.data;
-                status = product.status;
-                $("#id").val(product.id);
-                $("#productId").val(product.productId);
-                $("#contractTime").val(product.contractTime);
-                $("#name").val(product.name);
-                $("#contactName").val(product.realName);
-                $("#budget").val(product.budget);
-                $("#phone").val(product.phone);
-                $("#period").val(product.period);
-                $("#expectDeliveryTime").val(product.expectDeliveryTime);
-                $("#realDeliveryTime").val(product.realDeliveryTime);
-                $("#deliveryDesc").val(product.deliveryDesc);
-                if(status == '4'){
-                    $("#checkDesc").val(product.checkDesc);
-                    $("#checkDesc").attr("disabled", "disabled");
-                    $("#realCost").val(product.realCost);
-                    $("#realCost").attr("disabled", "disabled");
-                    $("#saveProductBtn").attr("disabled", "disabled");
+                var fileList = resultData.data;
+                if(fileList.length > 0){
+                    var list=''
+                    for(var item of product){
+                        list +='<div><a href="'+baseUrl+'/user/file/stream?fileName='+item.filePath+'">'+item.fileName+'</a></div>'
+                    }
+                    $('#files').append(list)
                 }
+
             }
         },
         complete: function () {
@@ -92,3 +95,4 @@ function displayProduct(id, form) {
         }
     });
 }
+

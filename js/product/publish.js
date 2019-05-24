@@ -23,6 +23,7 @@ function productList(cur_page) {
     param["pageSize"] = 10;
     param['productName'] = $('#productName').val();
     param['status'] = $('#status').val();
+    param['publishStatus'] = $('#publishStatus').val();
     param['publishTimeStart'] = $("#startDate").val();
     param['publishTimeEnd'] = $("#endDate").val();
     var loadingIndex = layer.load(1);
@@ -49,16 +50,14 @@ function productList(cur_page) {
                         }else if(content.status == '2'){
                             status = '进行中';
                         }else if(content.status == '3'){
-                            status = '待验收';
-                        }else if(content.status == '4'){
-                            status = '已验收';
+                            status = '已结束';
                         }
 
                         if(content.publishStatus == '0'){
                             publishStatus = '未发布';
                         }else if(content.publishStatus == '1'){
                             publishStatus = '已发布';
-                        }else if(content.publishStatus == ''){
+                        }else if(content.publishStatus == '2'){
                             publishStatus = '已下架';
                         }
                         tbody += "<tr>";
@@ -69,7 +68,11 @@ function productList(cur_page) {
                         tbody += "<td>" + content.expectDeliveryTime + "</td>";
                         tbody += "<td>" + status + "</td>";
                         tbody += "<td>" + publishStatus + "</td>";
-                        tbody += "<td class='td-manage' ><a onclick=\"revokeProduct("+content.id+")\" href=\"javascript:;\"> 下架 </a></td>" ;
+                        tbody += "<td class='td-manage' >" +
+                            "<a onclick=\"revokeProduct("+content.id+")\" href=\"javascript:;\"> 下架 </a>" +
+                            "|"+
+                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./detail.html?productId="+content.id+"',1000,600)\" href=\"javascript:;\">详情</a>" +
+                            "</td>" ;
                         tbody += "</tr>";
                     }
                     $('#productList').html(tbody);
