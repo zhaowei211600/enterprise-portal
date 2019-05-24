@@ -60,11 +60,16 @@ function productList(cur_page) {
                         }else if(content.publishStatus == '2'){
                             publishStatus = '已下架';
                         }
+                        var periodEnd = '';
+                        if(content.periodEnd != null && content.periodEnd != ''){
+                             periodEnd = content.periodEnd;
+                        }
                         tbody += "<tr>";
                         tbody += "<td>" + (i+1) + "</td>";
                         tbody += "<td>" + content.name + "</td>";
                         tbody += "<td>" + content.budget + "</td>";
-                        tbody += "<td>" + content.period + "</td>";
+                        tbody += "<td>" + content.periodStart + "</td>";
+                        tbody += "<td>" + periodEnd + "</td>";
                         tbody += "<td>" + content.expectDeliveryTime + "</td>";
                         tbody += "<td>" + status + "</td>";
                         tbody += "<td>" + publishStatus + "</td>";

@@ -93,10 +93,10 @@ function chooseUser() {
         layer.msg("请选择接单人",{icon:2,time:1000});
         return;
     }
-    if(productAttr == 1 && allCheckBoxId.length > 1){
+    /*if(productAttr == 1 && allCheckBoxId.length > 1){
         layer.msg("此项目性质为持续性服务，只能选择一个接单人",{icon:2,time:1000});
         return;
-    }
+    }*/
 
     layer.confirm('确认选择此接单人？', {skin: 'layui-layer-molv'}, function(index){
         param["productId"] = productId;

@@ -16,7 +16,9 @@ $(function () {
             var budget = $("#budget").val();
             var productName = $("#productName").val();
             var expectDeliveryTime = $("#expectDeliveryTime").val();
-            var period = $("#period").val();
+            var periodStart = $("#periodStart").val();
+            var periodEnd = $("#periodEnd").val();
+
             var desc = $("#desc").val();
             //2019-05-08 新增
             var type = $("#type").val();
@@ -28,7 +30,7 @@ $(function () {
 
             var params = {'id': id, 'name': productName,
                 'budget': budget, 'expectDeliveryTime': expectDeliveryTime,
-                'period': period, 'desc':desc,
+                'periodStart': periodStart, 'desc':desc,'periodEnd': periodEnd,
                 'type':type, 'attr':attr,
                 'detail':detail, 'serviceCost':serviceCost,
                 'costType':costType,

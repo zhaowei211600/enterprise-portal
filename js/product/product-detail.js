@@ -17,7 +17,7 @@ function initialPage(form) {
     checkOrderId = getUrlParam('id');
     orderId = getUrlParam('orderId');
     if(checkOrderId != 0) {
-        getOrderAttachment(orderId , form);
+        getCheckOrderAttachment(checkOrderId , form);
         displayCheckDetail(checkOrderId,form)
     }else {
         $("#id").val('0');
@@ -58,13 +58,13 @@ function displayCheckDetail(id, form) {
         }
     });
 }
-function getOrderAttachment(id, form) {
+function getCheckOrderAttachment(id, form) {
     if(!id || '' == id) return;
     var loadingIndex = layer.load(1);
     $.ajax({
         url: baseUrl + "/operation/attachment/order/list",
         data:JSON.stringify({
-            "orderId":id,
+            "checkOrderId":id,
             "pageNum":"1",
             "pageSize":"20"
         }),

@@ -81,7 +81,12 @@ function customList(cur_page) {
                             tbody += "<td class=\"td-manage\">" ;
                             tbody += "<a onclick=\"confirmUser("+content.id+")\" href=\"javascript:;\"> 认证通过 </a>" ;
                             tbody += "</td>";
-                        }else{
+                        }else if(content.status == '3'){
+                            tbody += "<td class=\"td-manage\">" ;
+                            tbody += "<a onclick=\"enableUser("+content.id+")\" href=\"javascript:;\"> 启用 </a>" ;
+                            tbody += "</td>";
+                        }
+                        else{
                             tbody += "<td>" ;
                             tbody += "</td>";
                         }
@@ -152,6 +157,28 @@ function stopUser(id) {
         });
     });
 }
+
+function enableUser(id) {
+    layer.confirm('确认要启用该用户吗？', {skin: 'layui-layer-molv'}, function(index){
+        $.ajax({
+            url: baseUrl + "/operation/custom/enable?userId=" + id,
+            type: "post",
+            crossDomain: true == !(document.all),
+            beforeSend: function (request) {
+                request.setRequestHeader("OperaAuthorization", TOKEN);
+            },
+            success: function (resultData) {
+                if (resultData.returnCode == 200) {
+                    layer.msg('用户启用成功!',{icon:1,time:1000});
+                    customList(null);
+                }else {
+                    layer.msg(resultData.returnMessage,{icon:2,time:1000});
+                }
+            }
+        });
+    });
+}
+
 
 function resetUser(id) {
     layer.confirm('确认要重置该用户的密码吗？', {skin: 'layui-layer-molv'}, function(index){
