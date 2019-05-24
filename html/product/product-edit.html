@@ -64,11 +64,21 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="period" class="layui-form-label">
-                <span class="x-red">*</span>项目工期：
+            <label for="periodStart" class="layui-form-label">
+                <span class="x-red">*</span>项目工期起：
             </label>
             <div class="layui-input-inline">
-                <input type="text" style="width: 300px" id="period" name="period" class="layui-input">
+                <input type="text" style="width: 300px" id="periodStart" name="periodStart" class="layui-input">
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="periodEnd" class="layui-form-label">
+                <span class="x-red">*</span>项目工期止：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" style="width: 300px" id="periodEnd" name="periodEnd" class="layui-input">
+
             </div>
         </div>
         <div class="layui-form-item">
@@ -161,7 +171,13 @@
     layui.use('laydate', function(){
         var laydate = layui.laydate;
         laydate.render({
-            elem: '#period'
+            elem: '#periodStart'
+            ,trigger: 'click'
+            ,format: 'yyyy-MM'
+        });
+
+        laydate.render({
+            elem: '#periodEnd'
             ,trigger: 'click'
             ,format: 'yyyy-MM'
         });
