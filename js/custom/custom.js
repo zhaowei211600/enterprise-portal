@@ -47,6 +47,8 @@ function customList(cur_page) {
                         var content = list[i];
                         var status = '';
                         var passTime = '';
+                        var realName = '';
+                        var cardNo = '';
                         if(content.status == '0'){
                             status = '待审核';
                         }else if(content.status == '1'){
@@ -60,8 +62,16 @@ function customList(cur_page) {
                         if(content.passTime != 'null' && content.passTime != null){
                             passTime = content.passTime;
                         }
+                        if(content.realName != '' && content.realName != null){
+                            realName = content.realName;
+                        }
+                        if(content.cardNo != '' && content.cardNo != null){
+                            cardNo = content.cardNo;
+                        }
                         tbody += "<tr>";
                         tbody += "<td>" + (i+1) + "</td>";
+                        tbody += "<td>" + realName + "</td>";
+                        tbody += "<td>" + cardNo + "</td>";
                         tbody += "<td>" + content.phone + "</td>";
                         tbody += "<td>" + content.registerTime + "</td>";
                         tbody += "<td>" + passTime + "</td>";
