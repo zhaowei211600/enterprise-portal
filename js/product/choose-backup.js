@@ -40,7 +40,7 @@ function userList(cur_page) {
     var param = {};
     cur_page = isInteger(cur_page) ? cur_page : 1;
     param["pageNum"] = cur_page;
-    param["pageSize"] = 10;
+    param["pageSize"] = 1000;
     param["productId"] = productId;
     var loadingIndex = layer.load(1);
     $.ajax({

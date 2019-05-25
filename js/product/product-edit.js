@@ -24,7 +24,6 @@ $(function () {
             var type = $("#type").val();
             var attr = $("#attr").val();
             var detail = $("#detail").val();
-            var serviceCost = $("#serviceCost").val();
             var costType = $("#costType").val();
             var fileNameList = $("#fileNameList").val();
 
@@ -32,7 +31,7 @@ $(function () {
                 'budget': budget, 'expectDeliveryTime': expectDeliveryTime,
                 'periodStart': periodStart, 'desc':desc,'periodEnd': periodEnd,
                 'type':type, 'attr':attr,
-                'detail':detail, 'serviceCost':serviceCost,
+                'detail':detail,
                 'costType':costType,
                 'fileNameList': fileNameList};
             var loadingIndex = layer.load(1);

@@ -42,7 +42,6 @@ function displayProduct(id, form) {
                 $("#productId").val(product.productId);
                 $("#productName").val(product.name);
                 $("#budget").val(product.budget);
-                $("#serviceCost").val(product.serviceCost);
                 $("#period").val(product.period);
                 $("#desc").val(product.desc);
                 $("#detail").val(product.detail);

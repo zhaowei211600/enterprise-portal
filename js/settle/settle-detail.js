@@ -3,7 +3,7 @@ var form = null,
     element = null,
     pageNum=1,
     total=0;
-var productId, status;
+var productId, status, orderId;
 $(function () {
     layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
@@ -40,7 +40,7 @@ $(function () {
             });
         });
     });
-    layui.use('laypage', function(){
+    /*layui.use('laypage', function(){
         var laypage = layui.laypage;
 
         //执行一个laypage实例
@@ -61,16 +61,17 @@ $(function () {
         });
 
 
-    });
+    });*/
 
 });
 
 
 function initialPage(form) {
     productId = getUrlParam('productId');
+    orderId = getUrlParam('productId')
     if(productId != 0) {
-        displayProduct(productId , form);
-        getProductList(productId,pageNum)
+        displayProduct(form);
+        getProductList(pageNum)
     }else {
         $("#id").val('0');
     }
@@ -79,11 +80,11 @@ function initialPage(form) {
  * 编辑前回显
  * @param id
  */
-function displayProduct(id, form) {
-    if(!id || '' == id) return;
+function displayProduct(form) {
+    if(!productId || '' == productId) return;
     var loadingIndex = layer.load(1);
     $.ajax({
-        url: baseUrl + "/operation/product/find?productId=" + id,
+        url: baseUrl + "/operation/product/find?productId=" + productId,
         type: "post",
         crossDomain: true == !(document.all),
         beforeSend: function (request) {
@@ -96,7 +97,6 @@ function displayProduct(id, form) {
                 $("#productId").val(product.productId);
                 $("#name").val(product.name);
                 $("#budget").val(product.budget);
-                $("#serviceCost").val(product.serviceCost);
                 $("#period").val(product.period);
                 $("#expectDeliveryTime").val(product.expectDeliveryTime);
 
@@ -149,15 +149,17 @@ function displayProduct(id, form) {
         }
     });
 }
-function getProductList(id,pageNum) {
-    if(!id || '' == id) return;
+function getProductList(cur_page) {
+    var total = 0;
+    cur_page = isInteger(cur_page) ? cur_page : 1;
+    if(!productId || '' == productId) return;
     var loadingIndex = layer.load(1);
     $.ajax({
         url: baseUrl + "/operation/check/settle/list",
         data:JSON.stringify({
-            "pageNum":pageNum,
+            "pageNum":cur_page,
             "pageSize":"10",
-            "orderId":1
+            "orderId":orderId
         }),
         type: "post",
         contentType: 'application/json;charset=UTF-8',
@@ -168,13 +170,11 @@ function getProductList(id,pageNum) {
         success: function (resultData) {
             if (resultData.returnCode == 200) {
                 var tbody = '',status;
-                if(total != resultData.total){
-                    total = resultData.total;
-                }
-
+                total = resultData.total;
                 var product = resultData.data;
                 $('#waitCheckList tr').remove()
-                for (var item of product){
+                for (var i = 0; i < product.length; i++){
+                    var item = product[i];
                     var auditor = '';
                     if(item.auditor !=null && item.auditor != ''){
                         auditor = item.auditor
@@ -196,8 +196,9 @@ function getProductList(id,pageNum) {
                     tbody +=    '</tr>'
                 }
                 $('#waitCheckList').append(tbody)
-
             }
+            paging('page', total, cur_page, 'totalNum', 'getProductList');
+            return false;
         },
         complete: function () {
             layer.close(loadingIndex);
