@@ -68,7 +68,7 @@ $(function () {
 
 function initialPage(form) {
     productId = getUrlParam('productId');
-    orderId = getUrlParam('productId')
+    orderId = getUrlParam('orderId')
     if(productId != 0) {
         displayProduct(form);
         getProductList(pageNum)
@@ -187,9 +187,11 @@ function getProductList(cur_page) {
                     tbody +=   '<td>'+item.updateTime+'</td>\n'
                     if(item.status == '4'){
                         tbody +=    '<td>已结算</td>\n'
+                        tbody +=    '<td>'+ item.amount +'</td>\n'
                         tbody +=    '<td> -- </td>\n'
                     }else if (item.status == '2'){
                         tbody +=    '<td>待结算</td>\n'
+                        tbody +=    '<td>--</td>\n'
                         tbody +=    '<td><a onclick="x_admin_show(\'项目结算\',\'./settle-detail-confirm.html?id='+item.id+'\',400,180)">结算</a></td>\n'
 
                     }

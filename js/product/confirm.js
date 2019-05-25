@@ -80,7 +80,7 @@ function productConfirmList(cur_page) {
                         tbody += "<td>" + attr + "</td>";
                         tbody += "<td>" + status + "</td>";
                         tbody += "<td class=\"td-manage\">" +
-                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./product-confirm-detail.html?productId="+content.id+"&type=1',1000,600)\" href=\"javascript:;\">" +
+                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./product-confirm-detail.html?productId="+content.productId+"&type=1&orderId="+content.id+"',1000,600)\" href=\"javascript:;\">" +
                             "项目验收"+"</a></td>"
 
                         tbody += "</tr>";

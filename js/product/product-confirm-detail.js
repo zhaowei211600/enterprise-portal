@@ -5,7 +5,7 @@ var form = null,
     pageNumH=1,
     total=0,
     totalH=0;
-var productId, status;
+var productId, status, orderId;
 $(function () {
     layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
@@ -83,10 +83,11 @@ $(function () {
 
 function initialPage(form) {
     productId = getUrlParam('productId');
+    orderId = getUrlParam('orderId');
     if(productId != 0) {
-        displayProduct(productId , form);
-        getWaitCheckList(productId,pageNum)
-        getCheckHistoryList(productId,pageNumH)
+        displayProduct(form);
+        getWaitCheckList(pageNum)
+        getCheckHistoryList(pageNumH)
     }else {
         $("#id").val('0');
     }
@@ -95,11 +96,11 @@ function initialPage(form) {
  * 编辑前回显
  * @param id
  */
-function displayProduct(id, form) {
-    if(!id || '' == id) return;
+function displayProduct(form) {
+    if(!productId || '' == productId) return;
     var loadingIndex = layer.load(1);
     $.ajax({
-        url: baseUrl + "/operation/product/find?productId=" + id,
+        url: baseUrl + "/operation/product/find?productId=" + productId,
         type: "post",
         crossDomain: true == !(document.all),
         beforeSend: function (request) {
@@ -164,15 +165,15 @@ function displayProduct(id, form) {
         }
     });
 }
-function getWaitCheckList(id,pageNum) {
-    if(!id || '' == id) return;
+function getWaitCheckList(pageNum) {
+    if(!orderId || '' == orderId) return;
     var loadingIndex = layer.load(1);
     $.ajax({
         url: baseUrl + "/operation/check/wait",
         data:JSON.stringify({
             "pageNum":pageNum,
             "pageSize":"10",
-            "orderId": id
+            "orderId": orderId
         }),
         type: "post",
         contentType: 'application/json;charset=UTF-8',
@@ -217,15 +218,15 @@ function getWaitCheckList(id,pageNum) {
         }
     });
 }
-function getCheckHistoryList(id,pageNum) {
-    if(!id || '' == id) return;
+function getCheckHistoryList(pageNum) {
+    if(!orderId || '' == orderId) return;
     var loadingIndex = layer.load(1);
     $.ajax({
         url: baseUrl + "/operation/check/history",
         data:JSON.stringify({
             "pageNum":pageNum,
             "pageSize":"10",
-            "orderId":id
+            "orderId":orderId
         }),
         type: "post",
         contentType: 'application/json;charset=UTF-8',

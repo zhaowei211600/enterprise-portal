@@ -80,10 +80,10 @@ function productConfirmList(cur_page) {
                         tbody += "<td>" + attr + "</td>";
                         tbody += "<td>" + status + "</td>";
                         tbody += "<td class=\"td-manage\">" +
-                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./settle-detail.html?productId="+content.id+"&type=1&orderId="+content.orderId+"',1000,600)\" href=\"javascript:;\">" +
+                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./settle-detail.html?productId="+content.productId+"&type=1&orderId="+content.id+"',1000,600)\" href=\"javascript:;\">" +
                             "项目详情"+"</a>"
                         tbody += "|";
-                        tbody += "<a onclick=\"closeProduct("+ content.id +")\" href=\"javascript:;\">" +
+                        tbody += "<a onclick=\"closeProduct("+ content.productId +")\" href=\"javascript:;\">" +
                             "结束"+"</a></td>"
                         tbody += "</tr>";
                     }
