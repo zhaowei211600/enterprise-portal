@@ -42,7 +42,9 @@ function displayProduct(id, form) {
                 $("#productId").val(product.productId);
                 $("#productName").val(product.name);
                 $("#budget").val(product.budget);
-                $("#period").val(product.period);
+                $("#periodStart").val(product.periodStart);
+                $("#periodEnd").val(product.periodEnd);
+
                 $("#desc").val(product.desc);
                 $("#detail").val(product.detail);
                 $("#expectDeliveryTime").val(product.expectDeliveryTime);

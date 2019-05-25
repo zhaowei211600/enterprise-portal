@@ -113,7 +113,9 @@ function displayProduct(form) {
                 $("#productId").val(product.productId);
                 $("#name").val(product.name);
                 $("#budget").val(product.budget);
-                $("#period").val(product.period);
+                $("#periodStart").val(product.periodStart);
+                $("#periodEnd").val(product.periodEnd);
+
                 $("#expectDeliveryTime").val(product.expectDeliveryTime);
 
                 switch (product.type){

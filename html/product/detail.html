@@ -64,11 +64,19 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="period" class="layui-form-label">
-                <span class="x-red">*</span>项目工期：
+            <label for="periodStart" class="layui-form-label">
+                <span class="x-red">*</span>项目工期起：
             </label>
             <div class="layui-input-inline">
-                <input type="text" style="width: 300px" id="period" name="period" class="layui-input">
+                <input type="text" style="width: 300px" id="periodStart" name="periodStart" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="periodEnd" class="layui-form-label">
+                <span class="x-red">*</span>项目工期止：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" style="width: 300px" id="periodEnd" name="periodEnd" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -135,23 +143,6 @@
 <script type="text/javascript" src="../../lay/js/xadmin.js"></script>
 <script src="../../js/product/detail.js"></script>
 
-<script>
-    $(function(){
-        layui.use('form', function(){
-            var form = layui.form;
-            form.render();
-        });
-    });
-    //日期框加载
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        laydate.render({
-            elem: '#period'
-            ,trigger: 'click'
-            ,format: 'yyyy-MM'
-        });
-    });
-</script>
 <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 <!--[if lt IE 9]>
 <script src="../../js/html5shiv.js"></script>
