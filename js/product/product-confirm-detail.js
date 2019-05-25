@@ -190,7 +190,8 @@ function getWaitCheckList(id,pageNum) {
 
                 var product = resultData.data;
                 $('#waitCheckList tr').remove()
-                for (var item of product){
+                for (var i = 0; i < product.length; i++){
+                    var item = product[i];
                     var finishDesc = '';
                     if(item.finishDesc != null && item.finishDesc != ''){
                         finishDesc = item.finishDesc;
@@ -242,7 +243,8 @@ function getCheckHistoryList(id,pageNum) {
 
                 var product = resultData.data;
                 $('#checkHistoryList tr').remove()
-                for (var item of product){
+                for (var i = 0; i < product.length; i++){
+                    var item = product[i];
                     if(item.status == '2'){
                         status = '已验收'
                     }else if(item.status == '3'){

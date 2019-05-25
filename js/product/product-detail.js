@@ -78,11 +78,11 @@ function getCheckOrderAttachment(id, form) {
             if (resultData.returnCode == 200) {
                 var product = resultData.data;
                 var list=''
-                for(var item of product){
+                for(var i = 0; i < product.length; i++){
+                    var item = product[i];
                     list +='<div><a href="'+baseUrl+'/user/file/stream?fileName='+item.filePath+'">'+item.fileName+'</a></div>'
                 }
                 $('#files').append(list)
-
             }
         },
         complete: function () {

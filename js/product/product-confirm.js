@@ -47,7 +47,8 @@ function initialPage(form) {
     if(checkOrderId != 0) {
         getCheckOrderAttachment(checkOrderId , form);
         var descArr = JSON.parse(localStorage.getItem('finishDesc'))
-        for (var item of descArr){
+        for (var i = 0; i < descArr.length; i++) {
+            var item = descArr[i];
             if (item.id == checkOrderId){
                 $('#deliveryDesc').val(item.finishDesc)
                 return;
@@ -82,7 +83,8 @@ function getCheckOrderAttachment(id, form) {
                 var fileList = resultData.data;
                 if(fileList.length > 0){
                     var list=''
-                    for(var item of product){
+                    for (var i = 0; i < fileList.length; i++) {
+                        var item = fileList[i];
                         list +='<div><a href="'+baseUrl+'/user/file/stream?fileName='+item.filePath+'">'+item.fileName+'</a></div>'
                     }
                     $('#files').append(list)
