@@ -39,7 +39,7 @@
                     </div>
                     <label class="layui-form-mid" for="status">项目类型</label>
                     <div class="layui-input-inline">
-                        <select name="status" id="type" lay-verify="required">
+                        <select name="type" id="type" lay-verify="required">
                             <option value="" selected="selected">全部</option>
                             <option value="1">咨询培训类</option>
                             <option value="2">技术开发类</option>
@@ -50,7 +50,7 @@
                     </div>
                     <label class="layui-form-mid" for="status">项目性质</label>
                     <div class="layui-input-inline">
-                        <select name="status" id="" lay-verify="required">
+                        <select name="attr" id="attr" lay-verify="required">
                             <option value="" selected="selected">全部</option>
                             <option value="1">持续性服务</option>
                             <option value="2">一次性服务</option>
@@ -60,8 +60,8 @@
                     <div class="layui-input-inline">
                         <select name="status" id="status" lay-verify="required">
                             <option value="" selected="selected">全部</option>
-                            <option value="3">待验收</option>
-                            <option value="4">已验收</option>
+                            <option value="4">已结算</option>
+                            <option value="2">未结算</option>
                         </select>
                     </div>
                 </div>
@@ -84,6 +84,8 @@
         <thead>
         <tr>
             <th>序号</th>
+            <th>接单人</th>
+            <th>联系方式</th>
             <th>项目名称</th>
             <th>项目预算</th>
             <th>期望交付时间</th>

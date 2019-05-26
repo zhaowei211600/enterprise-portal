@@ -24,12 +24,14 @@ function productConfirmList(cur_page) {
     param['productName'] = $('#productName').val();
     param['type'] = $('#type').val();
     param['attr'] = $("#attr").val();
-    param['commitCheck'] = '1';
+    param['status'] = $("#status").val();
+    param['queryType'] = '2';
     var loadingIndex = layer.load(1);
     $.ajax({
-        data: param,
-        url: baseUrl + "/operation/order/check/list",
+        data: JSON.stringify(param),
+        url: baseUrl + "/operation/check/list",
         type: "post",
+        contentType: 'application/json;charset=UTF-8',
         crossDomain: true == !(document.all),
         beforeSend: function (request) {
             request.setRequestHeader("OperaAuthorization", TOKEN);
@@ -46,11 +48,13 @@ function productConfirmList(cur_page) {
                         var type = '';
                         var attr = '';
                         if(content.status == '1'){
-                            status = '待接单';
+                            status = '待验收';
                         }else if(content.status == '2'){
-                            status = '进行中';
+                            status = '未结算';
                         }else if(content.status == '3'){
-                            status = '已结束';
+                            status = '验收拒绝';
+                        }else if(content.status == '4'){
+                            status = '已结算';
                         }
 
                         if(content.type == '1'){
@@ -73,6 +77,8 @@ function productConfirmList(cur_page) {
 
                         tbody += "<tr>";
                         tbody += "<td>" + (i+1) + "</td>";
+                        tbody += "<td>" + content.realName + "</td>";
+                        tbody += "<td>" + content.phone + "</td>";
                         tbody += "<td>" + content.productName + "</td>";
                         tbody += "<td>" + content.budget + "</td>";
                         tbody += "<td>" + content.expectDeliveryTime + "</td>";
@@ -80,11 +86,11 @@ function productConfirmList(cur_page) {
                         tbody += "<td>" + attr + "</td>";
                         tbody += "<td>" + status + "</td>";
                         tbody += "<td class=\"td-manage\">" +
-                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./settle-detail.html?productId="+content.productId+"&type=1&orderId="+content.id+"',1000,600)\" href=\"javascript:;\">" +
-                            "项目详情"+"</a>"
+                            "<a onclick=\"x_admin_show('项目验收 > 项目详情','./settle-detail.html?productId="+content.productId+"&type=1&orderId="+content.orderId+"',1000,600)\" href=\"javascript:;\">" +
+                            "项目验收"+"</a>"
                         tbody += "|";
                         tbody += "<a onclick=\"closeProduct("+ content.productId +")\" href=\"javascript:;\">" +
-                            "结束"+"</a></td>"
+                            "结束项目"+"</a></td>"
                         tbody += "</tr>";
                     }
                     $('#confirmList').html(tbody);

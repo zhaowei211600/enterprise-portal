@@ -100,6 +100,8 @@ $(document).ready(function(){
                         $("#totalCount").html(resultData.data.totalCount);
                         $("#doingCount").html(resultData.data.doingCount);
                         $("#finishCount").html(resultData.data.finishCount);
+                        $("#settleAmount").html(resultData.data.settleAmount);
+
                     }
                 }
                 return false;

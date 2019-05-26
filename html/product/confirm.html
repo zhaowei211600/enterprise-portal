@@ -58,12 +58,14 @@
                             <option value="2">一次性服务</option>
                         </select>
                     </div>
-                    <label class="layui-form-mid" for="isCheck">是否提交验收</label>
+                    <label class="layui-form-mid" for="status">项目状态</label>
                     <div class="layui-input-inline">
-                        <select name="isCheck" id="isCheck" lay-verify="required">
+                        <select name="status" id="status" lay-verify="required">
                             <option value="">全部</option>
-                            <option value="0">未提交</option>
-                            <option value="1" selected="selected">已提交</option>
+                            <option value="1" selected="selected">待验收</option>
+                            <option value="2">验收通过</option>
+                            <option value="3">验收拒绝</option>
+                            <option value="4">已结算</option>
                         </select>
                     </div>
                     <div class="layui-inline">
@@ -94,6 +96,8 @@
         <thead>
         <tr>
             <th>序号</th>
+            <th>接单人</th>
+            <th>联系方式</th>
             <th>项目名称</th>
             <th>项目预算</th>
             <th>期望交付时间</th>
