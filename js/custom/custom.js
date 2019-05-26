@@ -68,6 +68,15 @@ function customList(cur_page) {
                         if(content.cardNo != '' && content.cardNo != null){
                             cardNo = content.cardNo;
                         }
+
+                        var bankNo = '';
+                        var bankName = '';
+                        if(content.bankNo != '' && content.bankNo != null){
+                            bankNo = content.bankNo;
+                        }
+                        if(content.bankName != '' && content.bankName != null){
+                            bankName = content.bankName;
+                        }
                         tbody += "<tr>";
                         tbody += "<td>" + (i+1) + "</td>";
                         tbody += "<td>" + realName + "</td>";
@@ -82,6 +91,9 @@ function customList(cur_page) {
                         tbody += "<a onclick=\"showImg('"+content.cardImgBack+"',this)\" href=\"javascript:;\">证件照B面</a>" ;
                         tbody += "</td>";
                         tbody += "<td>" + status + "</td>";
+                        tbody += "<td>" + bankNo + "</td>";
+                        tbody += "<td>" + bankName + "</td>";
+
                         if(content.status == '1'){
                             tbody += "<td class=\"td-manage\">" ;
                             tbody += "<a onclick=\"stopUser("+content.id+")\" href=\"javascript:;\"> 停用 |</a>" ;

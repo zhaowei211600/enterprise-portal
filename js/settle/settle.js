@@ -88,7 +88,7 @@ function productConfirmList(cur_page) {
                         tbody += "<td>" + content.amount + "</td>";
                         tbody += "<td class=\"td-manage\">" +
                             "<a onclick=\"x_admin_show('项目验收 > 项目详情','./settle-detail.html?productId="+content.productId+"&type=1&orderId="+content.orderId+"',1000,600)\" href=\"javascript:;\">" +
-                            "项目验收"+"</a>"
+                            "项目结算"+"</a>"
                         tbody += "|";
                         tbody += "<a onclick=\"closeProduct("+ content.productId +")\" href=\"javascript:;\">" +
                             "结束项目"+"</a></td>"

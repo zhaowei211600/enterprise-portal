@@ -69,8 +69,10 @@ function statList(cur_page) {
                         tbody += "<td>" + periodEnd + "</td>";
                         tbody += "<td>" + content.expectDeliveryTime + "</td>";
                         tbody += "<td>" + status + "</td>";
-                        tbody += "<td>" + contractTime + "</td>";
-                        tbody += "<td>" + realDeliveryTime + "</td>";
+                        tbody += "<td>" + content.settleAmount + "</td>";
+                        tbody += "<td class='td-manage' >" +
+                            "<a onclick=\"x_admin_show('接单详情','./stat-detail.html?productId="+content.id+"',1000,600)\" href=\"javascript:;\">接单详情</a>" +
+                            "</td>" ;
                         tbody += "</tr>";
                     }
                     $('#statList').html(tbody);
